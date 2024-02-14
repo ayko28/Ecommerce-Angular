@@ -1,0 +1,26 @@
+<p>order-details-modal works!</p><div *ngIf="order">{{order|json}}</div>
+
+<div class="modal fade" id="orderDetailsModal" tabindex="-1" role="dialog" aria-labelledby="orderDetailsModalLabel" aria-hidden="true">
+   <div class="modal-dialog modal-lg" role="document">
+     <div class="modal-content">
+       <div class="modal-header">
+         <h5 class="modal-title" id="orderDetailsModalLabel">Order Details</h5>
+         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+           <span aria-hidden="true">&times;</span>
+         </button>
+       </div>
+       <div class="modal-body">
+         <!-- Display order details here -->
+         <p><strong>Order #: </strong> </p>
+         <p><strong>Order Date: </strong>  </p>
+         <p><strong>Consumer: </strong> getCustomerName(order.key) </p>
+         <!-- Display other order details as needed -->
+       </div>
+       <div class="modal-footer">
+         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+         <!-- You can add additional buttons or actions here -->
+       </div>
+     </div>
+   </div>
+ </div>
+ 

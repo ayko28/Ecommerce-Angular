@@ -1,0 +1,35 @@
+.table-container {
+   height: 150px;
+   overflow-y: auto;
+ }
+ 
+ .fluro-table {
+   font-size:8px;
+   border-collapse: collapse;
+   width: 100%;
+ 
+   th,
+   td {
+     border: 1px solid #d35400; /* Pumpkin Orange */
+     padding: 4px 8px;
+     text-align: center;
+    // color:white; /* #3498db; Belize Hole Blue */
+   }
+ 
+   
+   th {
+     background-color:black;/* #e67e22;  Carrot Orange */
+     color: #fff;
+   }
+ 
+   tr:nth-child(even) {
+     background-color:black; /* #ecf0f1; Clouds Gray */
+     color:white;
+   }
+ 
+   tr:nth-child(odd) {
+     background-color: green; /*#f39c12; Orange */
+     color:white
+   }
+ }
+ 

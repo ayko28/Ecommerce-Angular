@@ -1,0 +1,58 @@
+
+
+<nav class="navbar navbar-light bg-light">
+  <div class="container-fluid">
+    <ul class="nav d-flex">
+     
+      <li class="nav-item" [ngClass]="{ 'active': selectedOption === 'Paid-Orders' }">
+       
+         <a  routerLink="Paid-Orders" class="nav-link" href="#" (click)="selectOption('Paid-Orders')"> 
+           Paid  Orders</a>
+      </li>
+      <li class="nav-item" [ngClass]="{ 'active': selectedOption === 'Shipping-Orders' }">
+       <a routerLink="Complete-Orders" class="nav-link" href="#" (click)="selectOption('Shipping-Orders')">
+          Shipping</a>
+  </li>
+      <li class="nav-item" [ngClass]="{ 'active': selectedOption === 'Complete-Orders' }">
+           <a routerLink="Complete-Orders" class="nav-link" href="#" (click)="selectOption('Complete-Orders')">
+              History</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div class="card">
+  <div class="card-body">
+        <div *ngFor="let seller of sellers; let idx = index">
+          <div class="card-header"> <h6 class="card-title"> Supplier:{{ seller.seller_name }}</h6></div>
+  <!--  <button (click)="PlaceOrder(seller.seller_name,idx,seller.seller_id)">Place Order</button>  -->
+ <table class="table"> 
+  <thead class="text-primary">
+                
+          <th>Product</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Total</th>
+        
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of Paid_Orders_Of_Sellers | filterBySeller: seller.seller_name">
+       
+          <td> {{ servCommon.GetDisplayNameByKey(productsByIds,'id',item.productId,'product_name')  }}</td>
+          <td>{{ item.price }}</td>
+          <td>{{ item.quantity }}</td>
+          <td>{{ item.total }}</td>
+        </tr>
+      
+
+        <!--totaldscount here-->
+
+      </tbody>
+    </table>  <!----> 
+    <table>
+      <tr>
+       
+      </tr>
+    </table>
+        </div>
+  </div>
+</div>      

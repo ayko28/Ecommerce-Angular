@@ -1,0 +1,98 @@
+<div *ngIf="currentUser"  class="row">
+  <div class="col-6 col-md-5" style="padding:0px 5px 3px">
+  <span >
+     <app-multiselectddl-parametric style="padding:0;width:50px;"
+     [list]="Categories" fieldtodisplay="category"
+     (shareCheckedList)="shareCheckedList($event)" 
+     (shareIndividualCheckedList)="shareIndividualCheckedList($event)">
+     >
+     
+   </app-multiselectddl-parametric>
+   </span>
+</div>
+<div class="col-3 col-md-3" style="padding:0px 0px 0;">
+  <img style="height:20px;width:auto" src='../../../../assets/icon/search.jpg'>By Name: <div style='padding: 11px 0px;'>
+    <input style="width:85px;" [(ngModel)]="searchNM" (keyup)="searchByName()"> </div>
+</div>
+<div class="col-3 col-md-3" style="background-color:yellow;border-radius: 5px;text-align: center;vertical-align: middle;float:left;height:25px;margin-top:10px;padding: 2px;" *ngIf="(currentUser && currentUser.userrole=='Customer')" >
+  <a style="text-decoration: none;font-size:10px;font-weight: bold;color:red" href='notepadOrder/{{selectedSellers[0].id}}/{{passing_sellerIds}}'>Order In Diary</a>
+</div>
+</div><!--a row-->
+<!-- <div id="divFilter" class="col-1.5 col-md-1.5" *ngIf="currentUser" style="float:left;margin-left:10px;float:left;font-size:8px;padding: 0;margin-top: 0;">
+ 
+</div> --><!-- Categories count:{{Categories.length}}selectedCatogories :<span *ngIf='selectedCatogories'>{{selectedCatogories|json}}</span> -->
+
+   
+<div > 
+   <!-- Display Cart button -->
+   <!-- product count{{products.length}}
+ <button type="button" class="btn btn-danger"  [disabled]='currentUser==null'  (click)="viewCart()">Cart <span class="badge badge-light">{{cartItemCount}}</span></button>
+  -->
+ <!-- <a href='/testHome'>testHome.</a>Products loaded:{{products.length}}
+ 
+  -->
+ 
+ <div class="row" *ngIf="currentUser">
+    <div class="col-6 col-sm-4 col-md-4 col-lg-3" *ngFor='let product of products'  > 
+   <!--aaa  <img style='height:150px;width:150px;background-color: transparent' loading="lazy"  [src]=product.productImg>    -->
+
+   <div class="card card-products_CL" > <!--background-color: #EEE8AA; --> <!--../../../../../assets/product_images/{{product.imageUrl}}-->
+    <div class='card-body' >
+      <!--commented as we are with single shop now-->
+    <!--  <div class="card-text firm_name" style="font-size:10px">{{ product.firm_name }}</div>--> 
+     <!--, {{ product.firm_addr }}-->
+    <!-- </div> -->
+   <img  (click)="openProductModal(product)" style='padding:0;height:130px;width:auto; object-fit: contain'  src='../../../../../assets/product_images/{{product.imageUrl}}' class="card-img-top" alt="Product image">
+ <!--   <div class="card-body"> -->
+     <p class="card-title" >{{ product.product_name }}</p>
+     <div class="numbers" >
+      <p *ngIf="product.OutOfStock" class="card-price">&nbsp;&nbsp;Out Of Stock</p>
+     <!-- <p class="card-description">{{ product.description }}</p> -->
+     <p *ngIf="!product.OutOfStock" class="card-price">Price:{{ product.price }}<span *ngIf="product.unit_id!=1">/{{servCommon.GetDisplayNameByKey(unit_master,'id',product.unit_id,'unit_name')}}</span> </p> 
+    <!--  <p class="card-discounttext">{{ product.discount_text }}</p> -->
+    </div>
+   </div>
+   <div class="card-footer">
+  <!--   <button type="button" class="btn btn-success btn-xs"  [disabled]='currentUser==null' (click)="addToCart(product)">Add to Cart</button> -->
+ <!--  <button class="btn btn-primary" (click)="openProductModal(product)">View Details</button> -->
+
+
+ <!-- <button class="btn btn-outline" (click)="openProductModal(product)">Add To cart</button> -->
+  <button style="padding:0;" class="btn btn-danger btn-sm"  (click)="openProductModal(product)">
+        <img style="height:25px" width='25px' src="/assets/icon/addtocart.png" alt="Edit" class="btn-icon">
+      </button>
+      Add To cart
+  </div>
+ </div>
+<!-- Modal form -->
+<ng-template #productModal let-modal>
+ <!--  <app-test-modal></app-test-modal> -->
+<!--  <app-productdetail [product]="selectedProduct" (addToCart)="addToCart($event)"></app-productdetail>-->
+ <!--  <app-productdetail></app-productdetail> -->
+</ng-template>
+  <!-- <div class="d-flex justify-content-center container mt-5">
+    <div class="card p-3 bg-white"><i class="fa fa-apple"></i>
+        <div class="about-product text-center mt-2"><img src="https://i.imgur.com/3VTaSeb.png" width="300">
+            <div>
+                <h4>Believing is seeing</h4>
+                <h6 class="mt-0 text-black-50">Apple pro display XDR</h6>
+            </div>
+        </div>
+        <div class="stats mt-2">
+            <div class="d-flex justify-content-between p-price"><span>Pro Display XDR</span><span>$5,999</span></div>
+            <div class="d-flex justify-content-between p-price"><span>Pro stand</span><span>$999</span></div>
+            <div class="d-flex justify-content-between p-price"><span>Vesa Mount Adapter</span><span>$199</span></div>
+        </div>
+        <div class="d-flex justify-content-between total font-weight-bold mt-4"><span>Total</span><span>$7,197.00</span></div>
+    </div>
+</div> -->
+
+    </div>
+ </div>   
+ 
+ </div><!--end of div covering-->
+ <div *ngIf="loading" class="text-center">Loading...
+  <img *ngIf="loading" style="height:300px;width:400px" src="../../../../../assets/icon/loading.gif">
+ </div>
+   <div *ngIf="endOfResults" class="text-center">End of results with count{{products.length}}</div>
+ 

@@ -1,0 +1,65 @@
+ 
+ <div class="row">
+
+   <div class="col-12">
+      
+      <!-- <a routerLink="New-Orders">Complete,Shipping Orders</a> 
+          <a routerLink="Paid-Orders">Paid Shipping Orders</a>
+          <a routerLink="Complete-Orders">Complete Orders</a>-->
+
+        <!--   <a routerLink="Paid-Orders" type="button" class="btn btn-outline btn-sm">Paid Shipping Orders</a>
+<a routerLink="Complete-Orders" type="button" class="btn btn-outline btn-sm">Complete Orders</a> -->
+
+
+
+<nav class="navbar navbar-light bg-light">
+   <div class="container-fluid">
+     <ul class="nav d-flex">
+      
+       <li class="nav-item" [ngClass]="{ 'active': selectedOption === 'Paid-Orders' }">
+        
+          <a  routerLink="Paid-Orders" class="nav-link" href="#" (click)="selectOption('Paid-Orders')"> 
+            Paid  </a>
+       </li>
+       <li class="nav-item" [ngClass]="{ 'active': selectedOption === 'Verified-Orders' }">
+        
+          <a  routerLink="Verified-Orders" class="nav-link" href="#" (click)="selectOption('Verified-Orders')"> 
+            Verified  </a>
+       </li>
+       <!-- <li class="nav-item" [ngClass]="{ 'active': selectedOption === 'Dispatched-Orders' }">
+        <a routerLink="Dispatched-Orders" class="nav-link" href="#" (click)="selectOption('Dispatched-Orders')">
+           Dispatched </a>
+      </li> -->
+       <li class="nav-item" [ngClass]="{ 'active': selectedOption === 'Delievered-Orders' }">
+            <a routerLink="Delievered-Orders" class="nav-link" href="#" (click)="selectOption('Delievered-Orders')">
+               Delievered </a>
+       </li>
+       <li class="nav-item" [ngClass]="{ 'active': selectedOption === 'Completed-Orders' }">
+         <a routerLink="Complete-Orders" class="nav-link" href="#" (click)="selectOption('Completed-Orders')">
+            Completed </a>
+    </li>
+     </ul>
+   </div>
+ </nav>
+
+<router-outlet></router-outlet>
+</div>
+</div>
+ 
+
+ <!--
+<div class="wrapper">
+   <div class="sidebar" data-color="white" data-active-color="danger">
+      <sidebar-cmp></sidebar-cmp>  
+   </div>
+   <div class="main-panel">
+        <navbar-cmp></navbar-cmp> 
+       <div class="content">
+<a routerLink="New-Orders">New Orders</a>
+<a routerLink="Paid-Orders">Paid Orders</a>
+           <router-outlet></router-outlet>
+       </div>
+        <footer-cmp></footer-cmp> 
+   </div>
+</div>
+<fixedplugin-cmp></fixedplugin-cmp> -->

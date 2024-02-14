@@ -1,0 +1,59 @@
+
+
+<nav class="navbar navbar-expand-lg navbar-absolute fixed-top navbar-transparent">
+   <div class="container-fluid">
+    <!--  <div class="navbar-collapse justify-content-start"> -->
+       <div class="navbar-wrapper">
+       <div class="navbar-toggle">
+         <button type="button" class="navbar-toggler" (click)="sidebarToggle()">
+           <span class="navbar-toggler-bar bar1"></span>
+           <span class="navbar-toggler-bar bar2"></span>
+           <span class="navbar-toggler-bar bar3"></span>
+         </button>
+       </div>
+     </div>
+        <!--  <div style="float:left;width:91%">
+           {{getTitle()}}
+         </div> -->
+         <div style="width:87%;">
+          <!--  <div style="float:left;margin-top:5px;padding-right: 3px;text-align: left;padding-top: 5px;"> {{getTitle()}}</div> -->
+           <!-- <div style="float:right;width:25%" *ngIf="!currentUser || (currentUser && currentUser.userrole=='Seller')" >Empty seller</div> -->
+           <div style="margin-top:10px;float:left;width:72%;height: 100%;" *ngIf="!currentUser || (currentUser && currentUser.userrole!=='Seller')" class="scrolling-sellers">
+             <div class="marquee">
+               <span *ngFor="let seller of user_Sellers" [ngClass]="seller.id==selectedSellers[0].id?'seller-name-selected':'seller-name'" (click)="Running_Seller_Selected(seller)">{{ seller.firm_name }} &nbsp;&nbsp;&nbsp;</span>
+             </div>
+           </div>
+           <div *ngIf="!currentUser" style="width:15%;float:left;padding-left: 5px;padding-bottom: 5px;">
+             <ul class="nav navbar-nav navbar-left">
+            <!--  <li><a  *ngIf="!currentUser" href="signupcustomer"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li> -->
+             <li><a   href="Auth" style="font-size:10px;text-decoration: none;"><span class="glyphicon glyphicon-log-in"></span> Login&nbsp;&nbsp;&nbsp;</a></li>
+           <!--   <li><a *ngIf="currentUser" (click)='Logout()' href="#">Logout</a></li> -->
+             </ul>
+           </div>
+           <!--  <div style="width:11%;padding-left: 5px;float:left;">
+              <ul class="nav navbar-nav navbar-left">
+             <li><a  *ngIf="!currentUser" href="signupcustomer" style="font-size:10px;text-decoration: none;"><span class="glyphicon glyphicon-user"></span> SignUp</a></li>
+             <li><a *ngIf="currentUser"  href="profile" style="font-size:10px;padding-left: 5px;padding: 7px;float:right;text-align: right;text-decoration: none;">Profile</a></li>
+             <li><a *ngIf="currentUser" (click)='Logout()' href="#" style="font-size:10px;padding-left: 5px;padding: 0px;float:right;text-align: right;text-decoration: none;">&nbsp;&nbsp;Logout.</a></li>
+             </ul> 
+           </div>  -->
+           <div style="width:19%;padding-left: 5px;float:left;">
+          <a  *ngIf="!currentUser" href="signupcustomer" style="font-size:10px;text-decoration: none;"><span class="glyphicon glyphicon-user"></span> SignUp</a>
+          <a *ngIf="currentUser"  href="profile" style="font-size:10px;padding-left: 5px;padding: 7px;float:right;text-align: right;text-decoration: none;">Profile</a>
+          <a *ngIf="currentUser" (click)='Logout()' href="#" style="font-size:10px;padding-left: 5px;padding: 0px;float:right;text-align: right;text-decoration: none;">&nbsp;&nbsp;Logout.</a>
+                   
+          </div>
+           
+         </div>
+         <div style="margin-left:10px;float:left;font-size:8px;padding: 0;margin-top: 0;width:20px">
+           <app-multiselectddl style="width:30px"
+           [list]="user_Sellers"
+           (shareCheckedList)="shareCheckedList($event)" 
+           (shareIndividualCheckedList)="shareIndividualCheckedList($event)">
+         </app-multiselectddl>
+       </div>
+         
+    <!--  </div> -->
+   </div>
+ </nav>
+ 

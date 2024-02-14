@@ -1,0 +1,110 @@
+ <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+
+YOUR_KEY_HERE ?
+
+shop9 DB render server password:Ue89LSAHe!8?
+
+Twilio pass
+Anilkoli*16072003
+
+twilio sms service details
+Account SID: AC396b23de230c44318fe5c8f456e8eb4f
+Auth Token : 8681443534c1260066bec0106d38bcd5
+service sid: VA9a6dddf3ad721c6f1f56f422eadf1ff5
+
+Lern how to send and verify OTP
+tutorial link: https://www.twilio.com/docs/verify/api
+
+twilio nodejs code
+// Download the helper library from https://www.twilio.com/docs/node/install
+// Set environment variables for your credentials
+// Read more at http://twil.io/secure
+const accountSid = "AC396b23de230c44318fe5c8f456e8eb4f";
+const authToken = "8681443534c1260066bec0106d38bcd5";
+const verifySid = process.env.YOUR_VERIFY_SID;
+const client = require("twilio")(accountSid, authToken);
+
+client.verify.v2
+  .services(verifySid)
+  .verifications.create({ to: "+919890841532", channel: "sms" })
+  .then((verification) => console.log(verification.status))
+  .then(() => {
+    const readline = require("readline").createInterface({
+      input: process.stdin,
+      output: process.stdout,
+    });
+    readline.question("Please enter the OTP:", (otpCode) => {
+      client.verify.v2
+        .services(verifySid)
+        .verificationChecks.create({ to: "+919890841532", code: otpCode })
+        .then((verification_check) => console.log(verification_check.status))
+        .then(() => readline.close());
+    });
+  });
+
+
+for razorpay help
+https://pronteff.com/how-to-integrate-razorpay-with-angular-application-for-payments/
+  
+  test api key:rzp_test_vmjtxiBj8VbrZj
+  
+Atul suggests
+tooltip Add button
+Sign up - OTP for mobile or email
+
+cart 290-58 discount
+username
+modifiedby
+
+Pending
+  Dates, 
+  unaunimous user what is in sidebar, history categories searched
+  
+  DBoys
+
+  order - promo
+  steps - configuration and display customer
+
+  invoice should shw prod which is in offer
+
+tab-pending for dispatch
+  Shipping = Inprocess
+  1. received (PAID)
+  2. verified 
+  3. dispatched
+  4. delievered (DBoy)  , if he dont need DBoy
+
+
+observations:14 Aug 2023 
+in cartDB we need 55/kg , currently it is 55 only
+  Razorpay payment should display orderid so that it can be tracked in failure case
+  cartinnotepad should check duplicate product
+  cartinnotepad validations
+  only submit button exists
+  Every where check Active flag
+  Promotion date problem yet to resolve
+  Image not displaying for new product uploading
+  
+  
+  only for advertise should not come for notepadorder
+  
+  units according to shop type like Grocery/Bakery
+  product-quantity-options configuration
+  
+  
+  
+  
+  
+
+
+  
+
+  
+
+
+While hosting 
+  build angular project using following command
+  ng build --configuration=production
+
+  check Auth guard aplied
+  

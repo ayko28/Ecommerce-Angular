@@ -1,0 +1,38 @@
+ErrorLog count:{{page_ErrorLog.length}}
+<button (click)='DeleteTop10Errors()'>Delete 10 errors</button>
+<!-- <button class='btn btn-sm btn-outline btn-sm' (click)='addProduct()'>New Commission Setting</button> -->
+    
+  
+<div class="card">
+  <div class="card-body">
+
+    <table class="table table-striped">
+      
+   <thead class="text-primary">
+    <th>Type</th> 
+    <th>Object</th>
+    <th>Description</th>
+ 
+   
+    <th scope="col"></th>
+    </thead>
+   <tbody>
+     <tr *ngFor="let aError of page_ErrorLog" style="height: 5px;"
+   
+     >
+     
+       <td style="height: 5px;">{{aError.Error_Type }}</td>
+       <td style="height: 5px;">{{ aError.Error_Object }}</td>
+       <td style="height: 5px;">{{ aError.Error_Description }}</td>
+       <!--
+       <td>
+         <button class="btn btn-outline btn-sm" (click)="editProduct(aError)">Change</button>
+       </td>
+      -->
+   
+     </tr>
+   </tbody>
+    </table>
+
+  </div>
+</div>

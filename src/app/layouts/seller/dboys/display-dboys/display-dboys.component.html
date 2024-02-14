@@ -1,0 +1,47 @@
+
+
+<button style="padding:0;" class="btn btn-danger btn-sm"  (click)="addProduct()">
+   <img style="height: 40px" src="/assets/icon/add.png" alt="New Product" class="btn-icon">
+ </button>
+ 
+ 
+ <div class="card">
+   <div class="card-body">
+     
+     <table class="table table-striped">
+    
+       <thead class="text-primary">
+   
+       <!--  <th>ID</th> -->
+       <th scope="col"></th>
+        <th>userid</th> 
+        <th>DBoy Name</th>
+       <!--  <th>Firm </th> -->
+       <!--  <th>IsActive</th> --> 
+       </thead>
+       <tbody>
+       <tr *ngFor="let aSeller of sellers" style="height: 5px;"
+     
+       >
+         <!--  <td style="height: 5px;">{{ aSeller.id }}</td> -->
+         <td style="width:140px">
+           <!-- <button class="btn btn-outline btn-sm" (click)="editProduct(aSeller)">Change</button> -->
+           <button style='padding:0' class="btn btn-danger btn-sm" (click)="editProduct(aSeller)">
+           <img style="height:37px;width:40px" src="/assets/icon/Edit.png" alt="Edit" class="btn-icon">
+       </button>
+         </td>
+       
+         <td style="width:140px;height: 5px;">{{aSeller.userid}}</td>
+         <td style="width:140px;height: 5px;">{{ aSeller.display_name }}</td>
+        <!--  <td style="width:140px;height: 5px;">{{ aSeller.firm_name }}</td> -->
+       <!--   <td style="width:40px;height: 5px;">{{ aSeller.IsActive }}</td> -->
+         
+         <!---->
+       
+     
+       </tr>
+     </tbody>
+     </table>
+ 
+   </div>
+ </div>

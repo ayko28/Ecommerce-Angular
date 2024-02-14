@@ -1,0 +1,105 @@
+
+
+
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+    
+      <h5 class="modal-title" id="productModalLabel">{{ product.product_name }}</h5><!--Product-->
+      <button type="button" style="border-radius:7px" class="close btn-danger" data-dismiss="modal"  (click)="activeModal.close('Close click')"  aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+
+    </div>
+    <div class="modal-body">
+     <div class="row">
+      <div class="col-7">
+        <img style="height:200px;width:fit-content" src='../../../../../assets/product_images/{{product.imageUrl}}' alt="Product Image" class="product-image">
+      </div>
+      <div class="col-5">
+        <!-- <h5>{{ product.product_name }}</h5> -->
+    
+      <p>Price: {{ product.price }} <span *ngIf="product.unit_id!=1">/{{servCommon.GetDisplayNameByKey(unit_master,'id',product.unit_id,'unit_name')}}</span></p>
+      
+      <p *ngIf='product.IsOnlyForAdvertise==true'>Please visit our shop to deal</p>
+      <p *ngIf='product.OutOfStock==true'>Out Of Stock</p>
+      <div *ngIf="product.unit_id!=1 && (product.IsOnlyForAdvertise==false && product.OutOfStock==false)"><!--if product.unit_id not Nos-->
+        <div style="float:left">
+          <input type="radio" id="option1" name="unitOption" value="InNos" [(ngModel)]="quantity_InNosInRupeesInGms">
+          <label for="option1">Nos</label>
+        </div> 
+       <!--  <div style="float:left">
+          <input type="radio" id="option2" name="unitOption" value="InRupees" [(ngModel)]="quantity_InNosInRupeesInGms">
+          <label for="option2">In Rs</label>
+        </div> -->
+        <div >
+          <input type="radio" id="option3" name="unitOption" value="InGms" [(ngModel)]="quantity_InNosInRupeesInGms">
+          <label for="option3">In gms</label>
+        </div> 
+      </div>
+      <div *ngIf="product.IsOnlyForAdvertise==false && product.OutOfStock==false"><!--checking product.IsOnlyForAdvertise==false-->
+
+            <div class="quantity-container" *ngIf="product.unit_id==1 || quantity_InNosInRupeesInGms=='InNos'">
+              <label for="quantity">Quantity:</label>
+              <div class="quantity-controls">
+                <button (click)="decreaseQuantity()" class="quantity-button">-</button>
+                <input style="width:60px" type="number" id="quantity" [(ngModel)]="quantity" class="quantity-input">
+                <button (click)="increaseQuantity()" class="quantity-button">+</button>
+              </div>
+            </div>
+            <div  class="quantity-container" *ngIf="quantity_InNosInRupeesInGms=='InRupees'">
+              <label for="quantity">Quantity of price:</label>
+              <label for="customPrice">Enter Custom Price (per Kg):</label>
+              <input type="number" id="customPrice" [(ngModel)]="product.customPrice" class="custom-price-input"
+              (change)="onCustomPriceChange(product.customPrice)">
+            </div>
+            <div class="quantity-container" *ngIf="quantity_InNosInRupeesInGms=='InGms'">
+              <label for="customQuantity">Enter Custom Quantity (in gms):</label>
+              <input type="number" id="customQuantity" [(ngModel)]="product.customQuantity" class="custom-quantity-input"
+              (change)="onCustomQuantityChange(product.customQuantity)">
+            </div>
+  <!-- Dropdown for unit selection -->
+<!--   <div class="unit-container" *ngIf="product.unit_id !== 2">
+    <label for="unit">Select Unit:</label>
+    <select id="unit" [(ngModel)]="product.selectedUnit" class="unit-select">
+      <option *ngFor="let unit of units" [value]="unit.unit_name">{{ unit.unit_name }}</option>
+    </select>
+  </div> -->
+
+    <!-- Custom unit options for Kg (unit_id 2) -->
+  <!--   <div class="unit-container" *ngIf="product.unit_id === 2">
+      <label for="unit">Select Unit:</label>
+      <select id="unit" [(ngModel)]="product.selectedUnit" class="unit-select">
+        <option *ngFor='let aUnit of Unit_Master' [value]="aUnit.id">{{aUnit.unit_name}}</option>
+      
+      </select>
+      <div *ngIf="product.selectedUnit === '3'">
+        <label for="customQuantity">Enter Custom Quantity (in gms):</label>
+        <input type="number" id="customQuantity" [(ngModel)]="product.customQuantity" class="custom-quantity-input"
+        (change)="onCustomQuantityChange(product.customQuantity)">
+      </div>
+      <div *ngIf="product.selectedUnit === '2'">
+        <label for="customPrice">Enter Custom Price (per Kg):</label>
+        <input type="number" id="customPrice" [(ngModel)]="product.customPrice" class="custom-price-input"
+        (change)="onCustomPriceChange(product.customPrice)">
+      </div>
+    </div> -->
+
+
+            <button [disabled]="!currentUser || product.customPrice>product.price" (click)="onAddToCart(quantity)" class="add-to-cart-button btn btn-sm btn-danger">Add to Cart</button>
+      
+       </div><!--end checking product.IsOnlyForAdvertise==false-->
+      </div>
+     </div> 
+      
+      
+
+
+    </div>
+    <!-- <div class="modal-footer">
+      <button type="button" class="btn btn-sm btn-outline" (click)="activeModal.close('Close click')" data-dismiss="modal">Close</button>
+    </div> -->
+  </div>
+</div>
+
+

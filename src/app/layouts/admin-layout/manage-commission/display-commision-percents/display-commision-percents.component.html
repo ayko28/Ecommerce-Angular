@@ -1,0 +1,49 @@
+
+<!-- <button class='btn btn-sm btn-outline btn-sm' (click)='addProduct()'>New Commission Setting</button> -->
+
+<button style="padding:0;" class="btn btn-danger btn-sm"  (click)="addProduct()">
+  <img style="height: 40px" src="/assets/icon/add.png" alt="New Product" class="btn-icon">
+</button>
+
+
+
+<div class="card">
+  <div class="card-body">
+    
+    <table class="table table-striped">
+   
+   <thead class="text-primary">
+    <th scope="col"></th>
+    <!--  <th>ID</th> -->
+  
+     <th>Seller</th> 
+     <th>Percent</th>
+     <th>Credit_limit</th>
+     <th>Consumed</th>
+    </thead>
+   <tbody>
+     <tr *ngFor="let aComm_Setting of Seller_Commission_Setting" style="height: 5px;"
+   
+     >
+     <td>
+      <!-- <button class="btn btn-outline btn-sm" (click)="editProduct(aComm_Setting)">Change</button> -->
+      <button style='padding:0' class="btn btn-danger btn-sm" (click)="editProduct(aComm_Setting)">
+       <img style="height:20px" src="/assets/icon/Edit.png" alt="Edit" class="btn-icon">
+  </button>
+    </td>
+      <!--  <td style="height: 5px;">{{ aComm_Setting.id }}</td> -->
+       <td style="height: 5px;">{{servCommon.GetDisplayNameByKey(users,'id',aComm_Setting.seller_id,'display_name') }}</td>
+       <td style="height: 5px;">{{ aComm_Setting.commission_percent }}</td>
+       
+       <td style="height: 5px;">{{ aComm_Setting.credit_limit }}</td>
+       <td style="height: 5px;">{{ aComm_Setting.consumed_credit }}</td>
+       <!---->
+       
+      
+   
+     </tr>
+   </tbody>
+    </table>
+ 
+  </div>
+</div>  

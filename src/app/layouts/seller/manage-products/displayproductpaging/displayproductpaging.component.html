@@ -1,0 +1,66 @@
+
+
+
+ <!-- <button class='btn btn-sm btn-outline btn-sm' (click)='addProduct()'>New Product</button>  -->
+<div class="row">
+
+  <div class="col-1 col-md-1" style="padding:0px 0px 0;">
+    <button style="padding:0;" class="btn btn-danger btn-sm"  (click)="addProduct()">
+      <img style="height: 40px" src="/assets/icon/add.png" alt="New Product" class="btn-icon">
+    </button>
+  </div>
+  <div class="col-4 col-md-5" style="padding:0px 0px 0;vertical-align: bottom;">
+    <div style="float:left"><img style="height:20px;width:auto" src='../../../../assets/icon/search.jpg'>By Name:&nbsp;&nbsp;</div>
+     <div style='padding: 1px 0px;'>
+     <input style="width:185px;" [(ngModel)]="searchNM" (keyup)="searchByName()"> 
+     </div>
+  </div>
+  <!-- <div class="col-5 col-md-2" style="font-size:9px">
+    Products in Red are Out Of Stock
+  </div> -->
+</div>
+ 
+ <div class="card">
+   <div class="card-body">
+    
+     <img *ngIf="loading" style="height:300px;width:400px" src="./../../../../../assets/icon/loading.gif">
+     <table *ngIf="!loading" class="table table-striped">
+    
+  <thead class="text-primary">
+   <th scope="col"></th>
+     <!--   <th scope="col"></th> -->
+       <!--  <th>ID</th> -->
+        <th>Product</th>  
+         <th>Price</th> 
+         <th>Category</th> 
+      
+     </thead>
+    <tbody><!-- -->
+      <tr *ngFor="let aProduct of products" style="height: 5px;"
+      [ngClass]="{'cls_OutOfStock':aProduct.OutOfStock===true}"
+    
+      >
+      <td width="120px" >
+       <button style="padding:0" class="btn btn-danger btn-sm" (click)="editProduct(aProduct)">
+         <img src="/assets/icon/Edit.png" alt="Edit" class="btn-icon">
+       </button>
+        <!-- <input type="button" (click)="editProduct(aProduct)" class="edit-button">-->
+ 
+      </td>
+   <!--    <td width="120px">
+       <button style='padding:0' class="btn btn-danger btn-sm" (click)="selectProduct(aProduct)">
+            <img src="/assets/icon/preview_eye.png" alt="Edit" class="btn-icon">
+       </button>
+     </td> -->
+        <!-- <td style="height: 5px;">{{ aProduct.id }}</td> -->
+        <td  width="200px" style="height: 5px;"  >{{ aProduct.product_name }}</td>
+        <td width="200px" style="height: 5px;">Rs.&nbsp;{{ aProduct.price }}<span *ngIf='aProduct.unit_id!=1'>&nbsp;/{{servCommon.GetDisplayNameByKey(unit_master,'id',aProduct.unit_id,'unit_name')}}</span></td>
+        <td style="height: 5px;">{{servCommon.GetDisplayNameByKey(categoryList,'id',aProduct.category_id,'Category') }}</td> 
+       
+    
+      </tr>
+    </tbody>
+     </table>
+ 
+   </div>
+ </div>

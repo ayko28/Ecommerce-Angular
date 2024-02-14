@@ -1,0 +1,74 @@
+<!-- <div *ngIf='categoryList'>categoryList count:{{categoryList.length}}</div>  placeholder="Search and select a product"-->
+
+<div class="card">
+  <div class="card-body">
+    
+    <form [formGroup]="myForm" (ngSubmit)="onSubmit()" autocomplete="off">
+   <div class="row">
+    <div class="'col-12">
+  <div class="form-group">
+    <label for="product_name">Seller Name</label>
+    <ng-select [items]="sellerList"     
+    [ngClass]="{ 'disabled-select': addedit_OPmode === 'Edit' }"
+        
+     formControlName="seller_name" class="form-control" id="seller_name"
+           bindLabel="display_name"
+           (change)="onSelectProduct($event)"
+          >
+</ng-select>
+
+
+</div>
+</div>
+</div>
+
+  <!--  <div class="form-group">
+     <label for="seller_name">Seller Name</label>
+     <input type="text" formControlName="seller_name" class="form-control" id="seller_name">
+   </div> -->
+   <div class="row">
+    <div class="col-4">
+      
+    <div class="form-group">
+    <label for="commission_percent">commission_percent</label>
+    <input type="number" formControlName="commission_percent" class="form-control" id="commission_percent">
+    <span class="error" *ngIf="isSubmitted && errorControl['commission_percent'].errors?.['required']">
+      commission_percent not provided.
+    </span> 
+  </div>
+    </div>
+ 
+    <div class="col-4">
+  <div class="form-group">
+    <label for="credit_limit">credit_limit</label>
+    <input type="number" formControlName="credit_limit" class="form-control" id="credit_limit">
+    <span class="error" *ngIf="isSubmitted && errorControl['credit_limit'].errors?.['required']">
+      credit_limit not provided.
+    </span> 
+  </div>
+</div>
+
+
+ 
+<div class="col-4">
+  <div class="form-group">
+    <label for="RP_key">RP_key</label>
+    <input type="text" formControlName="RP_key" class="form-control" id="RP_key">
+    <span class="error" *ngIf="isSubmitted && errorControl['RP_key'].errors?.['required']">
+      RP_key not provided.
+    </span> 
+  </div>
+</div>
+
+   </div>
+  <!---->
+   
+
+ 
+   <button type="submit" class="btn btn-primary" (click)="onSubmitClick()">Submit</button>
+   <button type="submit" class="btn btn-primary" (click)="onCancelClick()">Cancel</button>
+    </form>
+
+  </div>
+</div>    
+ 

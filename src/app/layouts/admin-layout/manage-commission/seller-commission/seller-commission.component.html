@@ -1,0 +1,46 @@
+
+
+
+<div class='row'>
+   <div class="col-12">
+     
+    
+<div class="card">
+  <div class="card-body">
+
+      <table class="table table-striped">
+   
+   
+   <thead class="text-primary">
+    <th>Seller</th> 
+
+    <th>Amount</th>
+   <th>Commission To Receive</th>
+    </thead>
+   <tbody>
+     <tr *ngFor="let aOrder of Sellers_UNPAID_Commission_Summary" style="height: 5px;"
+   
+     >
+   
+      <td style="height: 5px;">{{servCommon.GetDisplayNameByKey(users,'id',aOrder.seller_id,'display_name') }}</td>
+      <td style="height: 5px;">      {{aOrder.EffectiveAmountSum}} </td>
+      <td style="height: 5px;">      {{aOrder.commission_applicableSum}} </td>
+      
+                
+                   
+                   <!--  <td>
+                     <button class="btn btn-primary btn-sm" >Pay</button>
+                   </td> -->
+       
+   
+     </tr>
+   </tbody>
+      </table>
+
+  </div></div>
+
+     </div>
+     
+   </div>
+   
+  

@@ -1,0 +1,46 @@
+
+<!-- <button class='btn btn-sm btn-outline btn-sm' disabled="true" (click)='addProduct()'>New Customer </button> -->
+
+<button style="padding:0;" class="btn btn-danger btn-sm"  disabled="true"   (click)="addProduct()">
+   <img style="height: 40px" src="/assets/icon/add.png" alt="New Product" class="btn-icon">
+ </button>
+ 
+ 
+ <div class="card">
+   <div class="card-body">
+     
+     <table class="table table-striped">
+    
+    <thead class="text-primary">
+   
+     <th></th>
+     <th>userid</th> 
+     <th>Customername</th>
+     <th>IsActive</th>
+          
+     <th scope="col"></th>
+     </thead>
+    <tbody>
+      <tr *ngFor="let aCust of customers" style="height: 5px;"
+    
+      >
+      <!--   <td style="width:140px;height: 5px;">{{ aCust.id }}</td> -->
+      <td style="width:40px">
+       <!--  <button class="btn btn-outline btn-sm" (click)="editProduct(aCust)">Change</button> -->
+       <button style='padding:0' class="btn btn-danger btn-sm" (click)="editProduct(aCust)">
+         <img style="height:20px" src="/assets/icon/Edit.png" alt="Edit" class="btn-icon">
+    </button>
+      </td>
+        <td style="width:140px;height: 5px;">{{aCust.userid}}</td>
+        <td style="width:140px;height: 5px;">{{ aCust.display_name }}</td>
+        <td style="width:40px;height: 5px;">{{ aCust.IsActive }}</td>
+        <!---->
+       
+       
+    
+      </tr>
+    </tbody>
+     </table>
+  
+   </div>
+ </div>

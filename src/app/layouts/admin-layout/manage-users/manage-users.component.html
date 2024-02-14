@@ -1,0 +1,28 @@
+
+<div class="row">
+
+   <div class="col-12">
+                
+<nav class="navbar navbar-light bg-light">
+   <div class="container-fluid">
+     <ul class="nav d-flex">
+      
+       <li class="nav-item" [ngClass]="{ 'active': selectedOption === 'Sellers' }">
+        
+          <a  routerLink="Sellers" class="nav-link" href="#" (click)="selectOption('Sellers')"> 
+           Sellers</a>
+       </li>
+       <li class="nav-item" [ngClass]="{ 'active': selectedOption === 'Customers' }">
+            <a routerLink="Customers" class="nav-link" href="#" (click)="selectOption('Customers')">
+              Customers </a>
+       </li>
+       <li class="nav-item" [ngClass]="{ 'active': selectedOption === 'DBoy' }">
+            <a routerLink="DBoys" class="nav-link" href="#" (click)="selectOption('DBoy')">
+              Delievery Boys</a>
+       </li>
+     </ul>
+   </div>
+ </nav>
+      <router-outlet></router-outlet>
+</div>
+</div>

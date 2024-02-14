@@ -1,0 +1,71 @@
+
+
+<!--Pay thru Razorpay-->
+<div class="row">
+  <div class="col-6>">
+
+
+     <div *ngIf='!RPOrderid'>
+        <button class="btn btn-danger btn-sm" (click)="createOrder()">Pay Commission</button>Rs. {{Commision_to_pay}}
+       <!--  <input type="text" readonly [ngModel]="Commision_to_pay"> -->
+     </div>
+     <div *ngIf='RPOrderid '>
+        <!-- <razorpay  [param_RP_Orderid]='RPOrderid' [param_RP_Amount]='RPamount' 
+        [param_RP_currency]='RPcurrency'  [param_RP_receipt]='RPreceipt'
+        [param_RP_Notes]='RPnotes'
+        ></razorpay> -->
+        <razorpay  (paymentSuccess)="handlePaymentSuccess($event)" [param_RP_Orderid]='RPOrderid' [param_RP_Amount]='RPamount' 
+        [param_RP_currency]='RPcurrency'  [param_RP_receipt]='RPreceipt'
+        [param_RP_Notes]='RPnotes'></razorpay>
+     </div>
+        
+  </div>
+</div>
+<!--end of Pay thru Razorpay-->
+
+<div class='row'>
+   <div class="col-12">
+     
+    
+
+<div class="card">
+  <div class="card-body">
+   <table class="table table-striped">
+   
+   <thead class="text-primary">
+    <th>OrderId</th>
+    <th>Customer</th> 
+    <th>Amount</th>
+   <th>Commission</th>
+  <!--  <th>Selected</th> -->
+   <!-- <th>Pay</th> -->
+   </thead>
+   <tbody>
+     <tr *ngFor="let aOrder of Unpaid_Commission_Orders_Of_Sellers" style="height: 5px;"
+   
+     >
+      <td>{{aOrder.orderId}}</td> 
+      <td style="height: 5px;">{{servCommon.GetDisplayNameByKey(users,'id',aOrder.userId,'display_name') }}</td>
+      <td style="height: 5px;">      {{aOrder.EffectiveAmount}} </td>
+      <td style="height: 5px;">      {{aOrder.commission_applicable}} </td>
+      <td style="display:none;height: 5px;">       <input type="checkbox" [(ngModel)]="aOrder.selected" (change)="calculateCommission()" ></td>
+                  <!--   <td style="height: 5px;">{{servCommon.GetDisplayNameByKey(users,'id',aOrder.seller_id,'display_name') }}</td> -->
+                   
+                   <!--  <td >
+                      <button style="padding:0;width: 40px;" class="btn btn-danger btn-sm"  (click)="PayCommission_for_Order(aOrder)">
+                        <img src="/assets/icon/paybyatmcard2.png" alt="Edit" class="btn-icon">
+                      </button>
+                   </td> -->
+       
+   
+     </tr>
+   </tbody>
+   </table>
+
+  </div>
+</div>
+     </div>
+     
+   </div>
+   
+  

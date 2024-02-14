@@ -1,0 +1,40 @@
+
+<div class='row'>
+   <div class="col-6">
+       
+ <table class="table table-striped">
+   <thead>
+     <tr>
+      
+     <!--  <th>OrderId</th> -->
+        <th>Seller</th>  
+      <th></th>
+     
+     </tr>
+   </thead>
+   <tbody>
+     <tr *ngFor="let aOrder of Paid_Orders_Of_Sellers" style="height: 5px;"
+   
+     >
+
+  <!--    <td>{{aOrder.orderId}}</td> -->
+      <td style="height: 5px;">{{servCommon.GetDisplayNameByKey(users,'id',aOrder.seller_id,'firm_name') }}</td>
+                  <!--   <td style="height: 5px;">{{servCommon.GetDisplayNameByKey(users,'id',aOrder.seller_id,'display_name') }}</td> -->
+                   
+                    <td>
+                     <button class="btn btn-primary btn-sm" (click)="selectUser(aOrder)">Select</button>
+                   </td>
+       
+   
+     </tr>
+   </tbody>
+  </table>
+     </div>
+      <div class="col-6">
+       <app-display-orderdetail *ngIf='Selected_Order_id_for_detail'
+   [Selected_Order_id_for_detail]=Selected_Order_id_for_detail
+   ></app-display-orderdetail>
+     </div><!-- -->
+   </div>
+   
+  

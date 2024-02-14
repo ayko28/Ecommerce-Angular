@@ -1,0 +1,63 @@
+<p>registerapproveconsumer works!</p>
+<p>New Customer Online Approving Registration</p>
+mobilenumber:<span *ngIf="mobileNumber">{{mobileNumber}}</span>
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()" autocomplete="off">
+   
+   
+ 
+    <div class="row">
+     <div class="col-4">
+     <div class="form-group">
+     <label for="userid">Mobile Number</label>
+     <input readonly type="text" formControlName="userid"  class="form-control" id="userid">
+     <span class="error" *ngIf="isSubmitted && errorControl['userid'].errors?.['required']">
+       userid not provided.
+     </span> 
+     <div *ngIf="f['userid']?.invalid && (f['userid']?.dirty || f['userid']?.touched)" class="text-danger">
+      <div *ngIf="f['userid']?.errors?.['required']">userid is required.</div>
+      <div *ngIf="f['userid']?.errors?.['pattern']">userid must be a 10-digit number.</div>
+    </div>
+   </div>
+     </div>
+   
+     <div class="col-4">
+   <div class="form-group">
+     <label for="display_name">Customer Name</label>
+     <input type="text" formControlName="display_name" class="form-control" id="display_name">
+     <span class="error" *ngIf="isSubmitted && errorControl['display_name'].errors?.['required']">
+       display_name not provided.
+     </span> 
+     <div *ngIf="f['display_name']?.invalid && (f['display_name']?.dirty || f['display_name']?.touched)" class="text-danger">
+      <div *ngIf="f['display_name']?.errors?.['required']">display_name is required.</div>
+      <div *ngIf="f['display_name']?.errors?.['minlength']">display_name must be at least 4 character length.</div>
+    </div>
+   </div>
+     </div>
+
+     
+     <div class="col-4">
+      <div class="form-group">
+        <label for="consumer_address">consumer_address</label>
+        <input type="text" formControlName="consumer_address" class="form-control" id="consumer_address">
+        <span class="error" *ngIf="isSubmitted && errorControl['consumer_address'].errors?.['required']">
+          consumer_address not provided.
+        </span> 
+        <div *ngIf="f['consumer_address']?.invalid && (f['consumer_address']?.dirty || f['consumer_address']?.touched)" class="text-danger">
+         <div *ngIf="f['consumer_address']?.errors?.['required']">consumer_address is required.</div>
+         <div *ngIf="f['consumer_address']?.errors?.['minlength']">consumer_address must be at least 20 character length.</div>
+       </div>
+      </div>
+        </div>
+    </div>
+    
+    
+        
+  
+  
+  <div *ngIf="alExists">This number already registered</div>
+  
+  <button (click)="onApprove()" type="submit" class="btn btn-primary" >Approve</button>
+  <button (click)="onReject()" type="submit" class="btn btn-primary" >Reject</button>
+  
+    
+  </form>

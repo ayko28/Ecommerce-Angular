@@ -1,0 +1,62 @@
+
+ 
+<div class='row'>
+  <div class="col-12">
+ <div class="card" *ngFor="let aQuantityPromo of promotions_product | groupBy: 'QuantityPromotions_id'"> 
+  <div class="card-header">
+    
+
+    <button style="padding:0;" class="btn btn-danger btn-sm"  (click)="editProduct(aQuantityPromo)">
+      <img style="height: 30px" width='30px' src="/assets/icon/Edit.png" alt="Edit" class="btn-icon">
+    </button>
+
+<h6  class="card-title">
+  For : {{getProductName(aQuantityPromo.key) }} 
+ 
+</h6> 
+ 
+<h6  class="card-title">
+  PromotionName : {{getPromotionName(aQuantityPromo.key) }} 
+ 
+</h6> 
+
+
+  </div>
+
+  
+
+
+<div class="card-body">
+  <div class="table-responsive">
+    <table class="table table-striped">
+    <thead class="text-primary">
+    
+        <th>Qnt Start</th>
+         <th>Qnt To</th>  
+       <th>Discount Rs</th>
+       <th>Discount %</th>
+      
+      
+   
+    </thead>
+    <tbody>
+       <tr  *ngFor="let aStage of aQuantityPromo.items" style="height: 5px;"
+    
+      >
+      <td>{{aStage.quantityRangeStart}}</td>
+      <td>{{aStage.quantityRangeEnd}}</td>
+      <td>{{aStage.discountAmount}}</td>
+      <td>{{aStage.discountPercentage}}</td>
+      
+      
+        
+    
+      </tr> 
+    </tbody>
+    </table>
+  </div>
+</div>
+</div><!-- iterate order -->
+    </div>
+    
+  </div>

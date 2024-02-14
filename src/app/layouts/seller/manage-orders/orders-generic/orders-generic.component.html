@@ -1,0 +1,146 @@
+
+<div class='row'>
+  <div class="col-12">
+ <div class="card" *ngFor="let order of orders | groupBy: 'orderId'"> 
+  <div class="card-header">
+    
+
+<!--{{ getOrderStatus(order.key) }} -->
+  <div style="font-size:.9em">
+    <span style='font-weight:bold;'>Order #:<span style="color:red"> {{ order.key }}</span> </span>
+      Order Date: {{ getOrderDate(order.key) }}    
+
+  Consumer : {{ getCustomerName(order.key) }} 
+  <!-- In your orders-generic.component.html template -->
+<!-- <button class="btn btn-sm btn-danger" (click)="openOrderDetailsModal(order)">Process</button> -->
+<button class="btn btn-lg btn-outline-primary" (click)="open(mymodal,order)">Open My Modal</button>
+
+  <!--openOrderDetailsModal-->
+ </div>
+
+<!-- <h6>order.order_status:{{ getOrderStatus(order.key)}}</h6> -->
+ <!--   (click)="changeOrderStatus(order.id, 'Verified')"   && order.order_status !== 'Verified' && order.order_status !== 'Dispatched'-->
+ <button class="btn btn-sm btn-danger" 
+ (click)="changeOrderStatus(order.key, 'Verified')"  
+ *ngIf=" getOrderStatus(order.key) == 'PAID'">Mark as Verified</button>
+
+
+ <!-- 
+ <button class="btn btn-sm btn-danger" 
+ (click)="changeOrderStatus(order.key, 'Dispatched')"  
+ *ngIf=" getOrderStatus(order.key) == 'Verified'">Mark as Dispatched</button>
+-->
+
+<button class="btn btn-sm btn-danger" 
+(click)="changeOrderStatus(order.key, 'Delievered')"  
+*ngIf=" getOrderStatus(order.key) == 'Verified'">Mark as Delievered</button>
+
+   <!--    
+ <button class="btn btn-sm btn-danger" 
+ (click)="changeOrderStatus(order.key, 'Delievered')"
+ *ngIf=" getOrderStatus(order.key) == 'Dispatched'">Mark as Delievered</button>
+-->
+
+ <button class="btn btn-sm btn-danger" 
+ (click)="changeOrderStatus(order.key, 'Completed')"
+ *ngIf=" getOrderStatus(order.key) == 'Delievered'">Mark as Completed</button>
+
+</div>
+
+
+<div class="card-body">
+  <div class="table-responsive">
+    <table class="table table-striped">
+    <thead class="text-primary">
+    
+        <th>Product</th>
+         <th>Price</th>  
+       <th>Quantity</th>
+      
+   
+    </thead>
+    <tbody>
+      <tr  *ngFor="let orderItem of order.items" style="height: 5px;"
+    
+      >
+       <td>{{ getProductName(orderItem.productId)}}</td>
+       <td>{{ orderItem.price }}<span *ngIf="getProduct_Unit(orderItem.productId)!=='1'"> /{{servCommon.GetDisplayNameByKey(unit_master,'id',getProduct_Unit(orderItem.productId),'unit_name')}}</span></td>
+                           <!-- <span *ngIf="product.unit_id!=1">/{{servCommon.GetDisplayNameByKey(unit_master,'id',product.unit_id,'unit_name')}}</span>-->
+       <td>{{ orderItem.quantity }}</td>
+        
+    
+      </tr>
+    </tbody>
+    </table>
+  </div>
+</div>
+</div><!-- iterate order -->
+    </div>
+    
+  </div>
+
+  
+
+  <!-- order-details-modal.component.html -->
+
+  
+<div class="modal fade" id="myorderDetailsModal" tabindex="-1" role="dialog" aria-labelledby="orderDetailsModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="orderDetailsModalLabel">Order Detailaaaaaas</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- Display order details here -->
+        <p><strong>Order #: </strong> </p>
+        <p><strong>Order Date: </strong>  </p>
+        <p><strong>Consumer: </strong> </p>
+        <!-- Display other order details as needed -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <!-- You can add additional buttons or actions here -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<h1>Angular 8 Bootstrap Modal Popup Example</h1>
+
+   
+
+<!-- <button class="btn btn-lg btn-outline-primary" (click)="open(mymodal)">Open My Modal</button> -->
+
+   
+
+<ng-template #mymodal let-modal>
+
+  <div class="modal-header">
+
+    <h4 class="modal-title" id="modal-basic-title">Bootstrap Modal</h4>
+
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+
+      <span aria-hidden="true">×</span>
+
+    </button>
+
+  </div>
+
+  <div class="modal-body">
+
+    This is example from ItSolutionStuff.com
+ <div *ngIf="aOrder" > <strong>Order #: {{aOrder.key}}</strong> <strong>Order Date: </strong> <strong>Consumer: </strong>  </div> 
+
+  </div>
+
+  <div class="modal-footer">
+
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Ok</button>
+
+  </div>
+
+</ng-template>

@@ -1,0 +1,58 @@
+.scrolling-sellers {
+   width: 30%;
+   overflow:hidden;
+   white-space: nowrap;
+ }
+ @media (max-width: 568px) {
+  .scrolling-sellers {
+    width: 100%; /* Set the width to 100% for smaller screens */
+  }
+}
+ .marquee {
+  margin-top: 0px;
+    display: inline-block;
+   animation: marqueeAnimation 21s linear infinite; /* Adjust the animation duration as needed */
+ }
+ 
+ .seller-name {
+   font-size: 13px; /* Adjust the font size as needed */
+   padding-right: 20px; /* Add some spacing between seller names */
+   border:1px solid darkgreen;border-radius: 3px;
+   background-color: white;
+   color:black;
+   padding:3px;
+ }
+ .seller-name-selected {
+  font-size: 12px; /* Adjust the font size as needed */
+  padding-right: 20px; /* Add some spacing between seller names */
+  border:1px solid yellow;border-radius: 3px;
+  background-color: red;
+  color:white;
+  padding:3px;
+}
+ @keyframes marqueeAnimation {
+   0% {
+     transform: translateX(60%);
+   }
+   100% {
+     transform: translateX(-90%);
+   }
+ }
+ 
+ 
+ #collapseExample_Sellers {
+   max-height: 100%;
+   width: 100%;
+   overflow-y: auto;
+   position: absolute;
+   top: 100%;
+   right: 0;
+   left: auto;
+   z-index: 9999;
+   background-color: #fff;
+   border: 1px solid rgba(0, 0, 0, 0.15);
+   border-radius: 4px;
+   -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+ }
+ 

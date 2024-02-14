@@ -1,0 +1,22 @@
+<div class="table-container">
+   <table class="fluro-table" style="width:200px">
+     <thead>
+       <tr>
+         <th>Quantity Option</th>
+         <th>Unit</th>
+        
+         
+       </tr>
+     </thead>
+     <tbody>
+       <tr *ngFor="let item of ListOfQuantityForThisProduct">
+         
+         <td>{{ item.Quantity_Option }}</td>
+         <td>{{servCommon.GetDisplayNameByKey(unit_master,'id',item.Quantity_Option_Unit,'unit_name')}}</td>
+         
+        
+       </tr>
+     </tbody>
+   </table>
+ </div>
+ 

@@ -1,0 +1,70 @@
+
+<!--Pay thru Razorpay-->
+<div *ngIf='!RPOrderid'>
+  <button [disabled]="totalPrice<100" class="btn btn-danger btn-sm" (click)="createRazoppay_Order(totalPrice)">Checkout Order</button>
+  Rs. {{totalPrice}}
+  <!-- <input type="number" readonly formControlName="totalPrice"> -->
+</div>
+<div *ngIf='RPOrderid'>
+  <razorpay  (paymentSuccess)="handlePaymentSuccess($event)" [param_RP_Orderid]='RPOrderid' [param_RP_Amount]='totalPrice'
+  [param_RP_currency]='RPcurrency'  [param_RP_receipt]='RPreceipt'
+  [param_RP_Notes]='RPnotes' [Seller_id_of_whom_to_pay]='seller_id'
+  ></razorpay>
+</div>
+<!--Pay thru Razorpay-->
+
+<div class="card">
+  <div class="card-body">
+
+  <div >
+    
+
+     <table class="table"> 
+           <thead class="text-primary">
+           
+            <th>Product</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Total</th>
+           </thead>
+          <tbody>
+            <tr *ngFor="let item of cartitemsToPlaceOrder">
+            
+              <td>{{ item.product_name }}</td>
+              <td>{{ item.price }}</td>
+              <td>{{ item.quantity }}</td>
+              <td>{{ item.price * item.quantity*servCommon.GetDisplayNameByKey(unit_master,'id',item.selectedUnit,'conversion_factor') }}</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td>Total:</td><td>{{totalPrice}}</td>
+         
+            <!--    -->
+           <!--  -->
+            </tr>
+          </tbody>
+        </table>  <!----> 
+       
+  </div>
+</div>
+
+    </div>
+  
+<form [formGroup]="myForm" >
+  <!-- <div class="form-group">
+    <label for="userid">userid</label>
+    <input type="text" formControlName="userid" class="form-control" id="userid">
+  </div>
+  <div class="form-group">
+    <label for="userid">seller_id</label>
+    <input type="text" formControlName="seller_id" class="form-control" id="userid">
+  </div> -->
+ 
+<!-- <button type="submit" class="btn btn-primary">Pay Rs. {{totalPrice}} and discount Rs. {{discount}} and Checkout  order</button> -->
+
+
+
+<!---->
+</form>
+

@@ -1,0 +1,50 @@
+/* notepad-order.component.scss */
+table {
+   border-radius: 5px;
+   border-collapse: collapse;
+   width: 100%;
+   max-height: 150px;
+   overflow-y: auto;
+   font-size: 10px;
+ }
+ 
+ th, td {
+   border: 1px solid gray;
+   padding: 2px;
+   text-align: left;
+   
+ }
+ td{
+  color:black;background-color: rgb(238, 233, 233);
+ }
+ th {
+  color:white;
+   background-color: black; /* Baby pinkish color */
+ }
+ 
+ tr:nth-child(even) {
+   background-color: #f2f2f2;
+ }
+ 
+ button {
+   border-radius: 3px;
+   background-color:  black;  /*  #ffd9e8;Baby pinkish color */
+   border: none;
+   color: white;
+   padding: 8px 12px;
+   text-align: center;
+   text-decoration: none;
+   display: inline-block;
+   font-size: 14px;
+   margin: 4px 2px;
+   cursor: pointer;
+ }
+ 
+ pre {
+   background-color: #f2f2f2;
+   padding: 10px;
+   border-radius: 5px;
+   overflow: auto;
+ }
+ 
+ 

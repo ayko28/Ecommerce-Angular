@@ -1,0 +1,33 @@
+<ng-template #rt let-r="result" let-t="term">
+  <img [src]="'https://upload.wikimedia.org/wikipedia/commons/thumb/' + r['flag']" class="mr-1" style="width: 16px">
+  <ngb-highlight [result]="r.name" [term]="t"></ngb-highlight>
+</ng-template>
+
+<div *ngIf="rows[0]">{{rows[0].obj.id}}</div>
+
+  <button (click)="addRow()">Add row</button>
+  <br/><br/>
+<table style="border:1px solid gray;">
+ <tr>
+    <th width="100px;">Fields</th>
+    <th>Edit cell</th>
+  </tr>
+  <tr *ngFor="let row of rows" >
+
+    <td *ngIf="row.id === editRowId">
+   <!--    <input type="text" [(ngModel)]="row.name" /> -->
+      <input id="typeahead-template" type="text" class="form-control" [(ngModel)]="row.obj" [ngbTypeahead]="search" [resultTemplate]="rt"
+   [inputFormatter]="formatter" />
+    </td>
+    
+    <td *ngIf="row.id !== editRowId">
+      {{row.obj.id}}-{{row.obj.name}}
+    </td>
+    <td>
+      <button #row.id (click)="toggle(row.id)">Edit</button>
+    </td>
+  </tr>
+</table>
+<hr/>
+<b>Current value of array</b>
+<pre>{{rows | json}}</pre>

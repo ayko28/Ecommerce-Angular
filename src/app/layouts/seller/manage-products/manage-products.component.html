@@ -1,0 +1,51 @@
+<div *ngIf="authServ.currentUserValue!.userrole=='Admin'">
+  ( Behalf )Select Seller
+  <select
+  class="form-control"
+  id="pCategory"
+  name="pCategory"
+  [(ngModel)]="currUser"
+>
+  <option value="" disabled>Choose a seller</option>
+  <option *ngFor="let c of sellers" [ngValue]="c">{{ c.display_name }}</option>
+</select>
+</div>
+
+<div class="row">
+
+   <div class="col-12">
+ <!-- && curr_Prod_id_for_detail==undefined-->
+       <app-displayproductpaging *ngIf="curr_Prod_id_for_Addedit==undefined"
+       [events]="eventsSubject.asObservable()"
+       [param_currUserId]=currUser
+         (product_id_for_Addedit)=Prod_Select_Changed_for_Addedit($event)
+         (product_id_for_Detail)=Prod_Select_Changed_for_Detail($event)>
+       </app-displayproductpaging>
+      
+    </div>
+  
+    
+    <div class="col-12" *ngIf="curr_Prod_id_for_Addedit!=undefined">
+        
+      <app-product-add-edit  
+      [param_currUserId]=currUser
+      [param_Product_id]=curr_Prod_id_for_Addedit 
+      (formSaved)=productformSave_Detected($event)>
+     </app-product-add-edit>
+ 
+    </div>
+  
+    
+    <div class="col-12" *ngIf="curr_Prod_id_for_detail!=undefined">
+        
+       <app-product-detail
+       [param_Product_id]=curr_Prod_id_for_detail></app-product-detail>
+  
+     </div>
+  
+  
+  </div>
+ 
+ 
+  
+ 

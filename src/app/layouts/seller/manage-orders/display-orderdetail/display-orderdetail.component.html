@@ -1,0 +1,35 @@
+
+<div class='row'>
+   <div class="col-md-12">
+    <button class="btn btn-primary btn-sm" (click)="setOrderStatusToShipping()">Shipping</button>
+    <button class="btn btn-primary btn-sm" (click)="setOrderStatusToComplete()">Complete</button>
+<table class="table table-striped">
+  <thead>
+    <tr>
+     
+         
+                 <th>Product</th>
+                 <th>Price</th>
+                  <th>Quantity</th>
+ 
+  <th scope="col"></th>
+ 
+    
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let aItem of orderdetail" style="height: 5px;"
+  
+    >
+     
+           <td style="height: 5px;">{{servCommon.GetDisplayNameByKey(product_list,'id',aItem.productId,'product_name') }}</td>
+                  <td>{{aItem.price}}</td> <td>{{aItem.quantity}}</td>
+      
+  
+    </tr>
+  </tbody>
+ </table>
+     </div>
+   </div>
+   
+   

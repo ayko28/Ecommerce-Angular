@@ -1,0 +1,14 @@
+
+ <div class="card mt-2 mb-3" style='background-color:light-yellow;border:5px solid pink;padding:10px'> <!--background-color: #EEE8AA; --> <!--../../../../../assets/product_images/{{product_Selected.imageUrl}}-->
+   <div class='card-body'>
+     <p class="card-text firm_name">{{ product_Selected.firm_name }}{{ product_Selected.firm_addr }}</p>
+   </div>
+  <img style='height:250px;width:auto; object-fit: contain'  src='../../../../../../assets/product_images/{{product_Selected.imageUrl}}' class="card-img-top" alt="Product image">
+  <div class="card-body">
+    <h5 class="card-title" style='color:maroon'>{{ product_Selected.product_name }}</h5>
+    <p class="card-text">{{ product_Selected.description }}</p>
+    <p class="card-text">Price:{{ product_Selected.price }} &nbsp;&nbsp; &nbsp;   {{ product_Selected.discount_text }}</p>
+   
+  </div>
+  
+ </div>

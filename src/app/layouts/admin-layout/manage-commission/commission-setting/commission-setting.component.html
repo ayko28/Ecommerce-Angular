@@ -1,0 +1,37 @@
+
+<div class="row">
+
+   <div class="col-12">
+ 
+       <app-display-commision-percents *ngIf='curr_Prod_id_for_Addedit==null'
+       [events]="eventsSubject.asObservable()"
+         (product_id_for_Addedit)=Prod_Select_Changed_for_Addedit($event)
+         (product_id_for_Detail)=Prod_Select_Changed_for_Detail($event)>
+       </app-display-commision-percents>
+      
+    </div>
+  
+    
+    <div class="col-12" *ngIf="curr_Prod_id_for_Addedit!=undefined">
+        
+      <app-commision-percents-add-edit  
+      [param_Product_id]=curr_Prod_id_for_Addedit 
+      (formSaved)=productformSave_Detected($event)>
+     </app-commision-percents-add-edit>
+ 
+    </div>
+  
+    
+    <!-- <div class="col-12" *ngIf="curr_Prod_id_for_detail!=undefined">
+        
+       <app-product-detail
+       [param_Product_id]=curr_Prod_id_for_detail></app-product-detail>
+  
+     </div> -->
+  
+  
+  </div>
+ 
+ 
+  
+ 

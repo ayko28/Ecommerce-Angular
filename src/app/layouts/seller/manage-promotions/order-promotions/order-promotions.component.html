@@ -1,0 +1,16 @@
+
+<div class="row">
+
+  <div class="col-12">
+     <app-display-order-promotion [events]="eventsSubject.asObservable()"   *ngIf='curr_PromoProd_id_for_Addedit<0 || curr_PromoProd_id_for_Addedit==undefined'
+     (promoproduct_id_for_Addedit)=promoProd_Select_Changed_for_Addedit($event)
+     (product_id_for_Detail)=Prod_Select_Changed_for_Detail($event)></app-display-order-promotion>
+  </div>
+
+  <div class="col-12">
+     <app-order-promotion-add-edit *ngIf='curr_PromoProd_id_for_Addedit || curr_PromoProd_id_for_Addedit==0'
+     [param_PromoProd_id]=curr_PromoProd_id_for_Addedit 
+     (formSaved)=productformSave_Detected($event)></app-order-promotion-add-edit>
+  </div>
+
+</div>   

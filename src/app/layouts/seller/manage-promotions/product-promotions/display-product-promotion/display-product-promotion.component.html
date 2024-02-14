@@ -1,0 +1,40 @@
+
+<!-- <button class='btn btn-sm btn-outline' (click)='addProduct()'>New Promotion</button> -->
+<button style="padding:0;" class="btn btn-danger btn-sm"  (click)="addProduct()">
+  <img style="height: 40px" src="/assets/icon/add.png" alt="Edit" class="btn-icon">
+</button>
+<div class="card">
+  <div class="card-body">
+    
+       <table class="table table-striped">
+ 
+ <thead class="text-primary">
+  <th scope="col"></th>  
+  <th>Product</th>
+   <th>Promotion</th>
+
+
+</thead>
+ <tbody>
+   <tr *ngFor="let aPromoProd of promotions_product" style="height: 5px;"
+ 
+   >
+     <td style="width: 10%;">
+      <button style="padding:0;" class="btn btn-danger btn-sm"  (click)="editProduct(aPromoProd)">
+      <img style="height: 30px" width='30px' src="/assets/icon/Edit.png" alt="Edit" class="btn-icon">
+    </button>
+   </td>  
+    <!--  <td style="height: 5px;">{{ aPromoProd.id }}</td> -->
+    <!--width="40px" style="height: 5px;"-->
+     <td style="width: 20%;">{{servCommon.GetDisplayNameByKey(products,'id',aPromoProd.productId,'product_name') }}</td>
+     <td style="width: auto;" >{{ aPromoProd.promotionName }}</td>
+     
+    
+     
+ 
+   </tr>
+ </tbody>
+       </table>
+
+  </div>
+</div>

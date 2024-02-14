@@ -1,0 +1,57 @@
+<!-- {{cartItems|json}}  -->
+
+<div class="card">
+  <div class="card-body">
+
+  <div *ngFor="let seller of sellers; let idx = index">
+    <div class="card-header"> 
+      <!--<h6 class="card-title">Supplier:{{ seller.seller_name }}</h6>-->
+
+    
+<div  style="float:left" class="col-6 col-md-7">
+  <button  class="btn btn-danger btn-sm" (click)="PlaceOrder(seller.seller_name,idx,seller.seller_id)">Place Order</button> Rs. {{ calculateSelectedTotal(seller.seller_name) }}
+</div>
+<div class="col-3 col-md-3" style="float:right;">
+  <div  style="background-color:yellow;border-radius: 5px;text-align: center;vertical-align: middle;float:left;height:25px;margin-top:10px;padding: 2px;" >
+    <a style="text-decoration: none;font-size:10px;font-weight: bold;color:red" href='notepadOrder/{{seller.seller_id}}/{{0}}'>Order In Diary</a>
+ </div>
+</div>
+
+     <table class="table"> 
+           <thead class="text-primary">
+            <th>Select</th>
+            <th>Product</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Total</th>
+           </thead>
+          <tbody>
+            <tr *ngFor="let item of cartItems | filterBySeller: seller.seller_name">
+              <td><input type="checkbox" [(ngModel)]='item.selected'></td>
+              <td>{{ item.product_name }}</td>
+              <td>{{ item.price }}<span *ngIf="getProduct_Unit(item.productId)!='1'">/{{servCommon.GetDisplayNameByKey(unit_master,'id',getProduct_Unit(item.productId),'unit_name')}}</span></td>
+              <!--getProduct_Unit(item.productId)-->
+              <td>{{ item.quantity }}</td>
+              <td>{{ item.price * item.quantity * servCommon.GetDisplayNameByKey(unit_master,'id',item.selectedUnit,'conversion_factor') }}</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              
+ <!--just uncomment below line if u need discount get displayed-->
+  <!-- <td>{{totalDiscounts.get(seller.seller_id)}} (Discount)</td>  -->
+  
+
+              <td>Total:</td><td>{{totalAmounts[idx]}}</td>
+              
+           <!--  -->
+            </tr>
+          </tbody>
+        </table>  <!----> 
+       
+  </div>
+</div>
+
+    </div>
+  

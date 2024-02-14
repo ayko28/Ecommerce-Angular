@@ -1,0 +1,28 @@
+
+<div class="row">
+
+   <div class="col-12">
+    
+     <!--  <a routerLink="commission_setting" type="button" class="btn btn-outline btn-sm">commission_setting</a>
+      <a routerLink="seller_commission" type="button" class="btn btn-outline btn-sm">seller_commission</a> -->
+
+                  
+<nav class="navbar navbar-light bg-light">
+   <div class="container-fluid">
+     <ul class="nav d-flex">
+      
+       <li class="nav-item" [ngClass]="{ 'active': selectedOption === 'commission_setting' }">
+        
+          <a  routerLink="commission_setting" class="nav-link" href="#" (click)="selectOption('commission_setting')"> 
+           Commission_Setting</a>
+       </li>
+       <li class="nav-item" [ngClass]="{ 'active': selectedOption === 'seller_commission' }">
+            <a routerLink="seller_commission" class="nav-link" href="#" (click)="selectOption('seller_commission')">
+               Seller_Commission</a>
+       </li>
+     </ul>
+   </div>
+ </nav>
+<router-outlet></router-outlet>
+</div>
+</div>

@@ -1,0 +1,148 @@
+<!-- {{cartItems|json}} -->
+
+<ng-template #rt let-r="result" let-t="term">
+  <img [src]="'../../../../../assets/product_images/' + r['imageUrl']" class="mr-1" style="width: 100px">
+  <ngb-highlight [result]="r.product_name" [term]="t"></ngb-highlight>
+  {{ r.unit_id === 2 ? 'Rs. '+ r.price +' per Kg' : r.unit_id === 1 ? 'Rs. '+ r.price +' per No' : '' }}
+</ng-template>
+
+<img *ngIf="loading" style="height:300px;width:400px" src="../../../../assets/icon/loading.gif">
+<!-- passed_sellerid:{{passed_sellerid}}
+passed_sellerIds:{{passed_sellerIds}}
+cartItems count:{{cartItems.length}} -->
+<div><button (click)="goBack()">Back</button></div>
+<div *ngIf="!loading">
+ <div style="float:left">   <button (click)="addRow()">Add Item</button> </div>
+ <div style="float:right">   <button (click)="AddToCart()">Add To Cart</button>  </div>
+   <br/><br/>
+  
+ <table  style="border:1px solid gray;">
+  <tr>
+     <th width="150px;">Product</th><th>STD Price</th><th>Quantity</th><th width="70px;"></th><th width="20px;">Price</th><th></th><th></th>
+   </tr>
+   <ng-container *ngFor="let row of rows">
+   <tr  >
+ 
+     <td *ngIf="row.id === editRowId"><!--typeahead-->
+    <!--    <input type="text" [(ngModel)]="row.product_name" /> -->
+       <input id="typeahead-template" type="text" class="form-control" [(ngModel)]="row.aproduct" [ngbTypeahead]="search" [resultTemplate]="rt"
+    [inputFormatter]="formatter" (keyup)="onTypeaheadChanging(row)" (blur)="onblur(row)"/>
+     </td>
+     
+     <td *ngIf="row.id !== editRowId"><!--non edit in place of typeahead-->
+      {{row.aproduct.product_name}}
+     </td>
+     
+     <td style="font-size:9px"><!-- Banner STD price n unit-->
+      <span *ngIf="row.aproduct.unit_id==1">
+      Rs. {{row.aproduct.price}}
+    </span>
+    <span *ngIf="row.aproduct.unit_id!==1">
+    Rs. {{row.aproduct.price}}/{{servCommon.GetDisplayNameByKey(unit_master,'id',row.aproduct.unit_id,'unit_name')}}
+  </span>
+    </td>
+     
+     <td ><!--quantity if Nos ddl ListOfQuantity if customQuantity-->
+      <span *ngIf="row.id == editRowId">   
+        <span *ngIf="row.quantity_InNosInRupeesInGms=='Nos' || row.quantity_InNosInRupeesInGms=='customPrice'">
+          <input  [disabled]="row.quantity_InNosInRupeesInGms=='customPrice'"  style="width:50px" type="number" (change)="onQuantityChange(row)" [(ngModel)]="row.quantity"> 
+         </span>
+         <span *ngIf="row.quantity_InNosInRupeesInGms=='customQuantity'">
+            
+
+
+          <!-- <select   [(ngModel)]="row.quantity" class="form-control">
+            <option *ngFor="let aobj of ListOfQuantityForThisProduct" [value]="aobj.Quantity_Option_Value">{{aobj.Quantity_Option}}</option>
+        
+          </select> -->
+          <select style="font-size:10px;padding:3px;" [(ngModel)]="row.selectedOption" class="form-control" (change)="onProductQuantityOptionChange(row)">
+            <option *ngFor="let option of ListOfQuantityForThisProduct" [ngValue]="option">{{ option.Quantity_Option }}</option>
+          </select>
+
+
+
+           </span>
+           
+      </span>
+      <span *ngIf="row.id !== editRowId">     
+        <span *ngIf="row.selectedOption==null">{{row.quantity}} {{servCommon.GetDisplayNameByKey(unit_master,'id',row.aproduct.unit_id,'unit_name')}} </span>
+       <span *ngIf="row.selectedOption && row.selectedOption.Quantity_Option">{{row.selectedOption.Quantity_Option}}</span> 
+      </span>
+     </td>
+   <!-- ... -->
+   <!-- <td >
+     <span style="font-size:9px" *ngIf="row.selectedUnit">{{servCommon.GetDisplayNameByKey(unit_master,'id',row.selectedUnit,'unit_name')}}</span> 
+    
+   </td> -->
+
+<td>
+  <span *ngIf="row.aproduct.unit_id === 1">
+   
+  </span>
+  <span *ngIf="row.id!==editRowId">
+    <span *ngIf='row.quantity_InNosInRupeesInGms=="customQuantity"'>In Quantity</span>
+    <span *ngIf='row.quantity_InNosInRupeesInGms=="customPrice"'>Of Pricea</span>
+</span>
+
+<!--replaced this -->
+ <!--  <span *ngIf="(row.aproduct.unit_id === 2 || row.aproduct.unit_id === 4) && row.id== editRowId">
+    <select style="font-size:10px;padding:3px;" [(ngModel)]="row.quantity_InNosInRupeesInGms" class="form-control" (change)="onUnitChange(row)">
+      <option value="Nos">Nos</option>
+      <option *ngIf="row.aproduct.Allowed_customPrice==1" value="customPrice">Of Pricez</option>
+      <option *ngIf="row.aproduct.Allowed_customQuantity==1"value="customQuantity">In Quantity</option>
+    </select>
+  </span> -->
+  <!--replaced by below, as we dont want ddl for Tole i.e. unit_id: 4-->
+  <span *ngIf="(row.aproduct.unit_id === 2) && row.id== editRowId">
+    <select style="font-size:10px;padding:3px;" [(ngModel)]="row.quantity_InNosInRupeesInGms" class="form-control" (change)="onUnitChange(row)">
+      <option value="Nos">Nos</option>
+      <option *ngIf="row.aproduct.Allowed_customQuantity==1"value="customQuantity">In Quantity</option>
+    </select>
+  </span> 
+</td>
+
+<td><!--*ngIf="row.aproduct.unit_id === 2 && row.selectedUnit !== 'Nos'"-->
+  <!--nonedit part-->
+  <span *ngIf="row.id !== editRowId">      {{row.price}}</span>
+  
+  <!--edit part-->
+  <span *ngIf="row.id == editRowId">      
+   <input style='width:60px' [readonly]="row.quantity_InNosInRupeesInGms!=='customPrice' && (row.quantity_InNosInRupeesInGms=='customQuantity' || row.selectedUnit==1)" type="number" [(ngModel)]="row.price" (change)="onPriceChange(row)">
+  </span>
+
+</td>
+
+<!-- ... -->
+
+     <td style="width:40px">
+      <!-- <button class="btn btn-outline btn-sm" (click)="editProduct(aSeller)">Change</button> -->
+      <button style='padding:0' class="btn btn-danger btn-sm" (click)="toggle(row)">
+      <img style="height:30px;width:35px" src="/assets/icon/Edit.png" alt="Edit" class="btn-icon">
+  </button>
+    </td>
+<!--delete row-->
+<td style="width:40px">
+  <!-- <button class="btn btn-outline btn-sm" (click)="editProduct(aSeller)">Change</button> -->
+  <button style='padding:0' class="btn btn-danger btn-sm" (click)="deleteRow_from_rows(row)">
+  <img style="height:30px;width:35px" src="/assets/icon/delete.png" alt="Delete" class="btn-icon">
+</button>
+</td>
+  
+   </tr>
+     <!---->
+    
+  <!-- Image row -->
+  <tr *ngIf="row.showImageRow" >
+    <td colspan="6" class="image-row">
+      <img style="height: 130px" [src]="'../../../../../assets/product_images/' + row.aproduct.imageUrl" class="product-image">
+    </td>
+  </tr>
+    <!---->
+    </ng-container>
+ </table>
+</div><!--all in this div if not loading-->
+ 
+<!--info-->
+<!--<hr/>
+ <b>Current value of array</b>
+ <pre>{{rows | json}}</pre>-->

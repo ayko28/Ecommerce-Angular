@@ -1,0 +1,107 @@
+<p>New Customer Online Registration</p>
+
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()" autocomplete="off">
+   
+   
+ 
+    <div *ngIf="!wait_otpmatchstarted" class="row">
+     <div class="col-6">
+     <div class="form-group">
+     <label for="userid">Mobile Number</label>
+     <input type="text" formControlName="userid" (keyup)="entering_userid_to_register()" class="form-control" id="userid">
+     <span class="error" *ngIf="isSubmitted && errorControl['userid'].errors?.['required']">
+       userid not provided.
+     </span> 
+     <div *ngIf="f['userid']?.invalid && (f['userid']?.dirty || f['userid']?.touched)" class="text-danger">
+      <div *ngIf="f['userid']?.errors?.['required']">userid is required.</div>
+      <div *ngIf="f['userid']?.errors?.['pattern']">userid must be a 10-digit number.</div>
+    </div>
+   </div>
+     </div>
+   
+     <div class="col-6">
+   <div class="form-group">
+     <label for="display_name">Customer Name</label>
+     <input type="text" formControlName="display_name" class="form-control" id="display_name">
+     <span class="error" *ngIf="isSubmitted && errorControl['display_name'].errors?.['required']">
+       display_name not provided.
+     </span> 
+     <div *ngIf="f['display_name']?.invalid && (f['display_name']?.dirty || f['display_name']?.touched)" class="text-danger">
+      <div *ngIf="f['display_name']?.errors?.['required']">display_name is required.</div>
+      <div *ngIf="f['display_name']?.errors?.['minlength']">display_name must be at least 4 character length.</div>
+    </div>
+   </div>
+     </div>
+    </div>
+    
+    
+    <div  *ngIf="!wait_otpmatchstarted" class="row">
+      <div class="col-6">
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" formControlName="password" class="form-control" id="password">
+     
+      <div *ngIf="isSubmitted && f['password']?.errors?.['required']" class="text-danger">
+        Password is required.
+      </div>
+      <div *ngIf="f['password']?.errors?.['uppercase']" class="text-danger">
+        Password must contain at least one capital letter.
+      </div>
+      <div *ngIf="f['password']?.errors?.['digit']" class="text-danger">
+        Password must contain at least one digit.
+      </div>
+      <div *ngIf="f['password']?.errors?.['minlength']" class="text-danger">
+        Password must have a minimum length of 5 characters.
+      </div>
+      <!-- Add a custom error message for password mismatch -->
+      <div *ngIf="myForm.errors?.['passwordsMatch']" class="text-danger">
+        Passwords do not match.
+      </div>
+    </div>
+      </div>
+      <div class="col-6">
+        <div class="form-group">
+          <label for="passwordRepeat">Repeat Password</label>
+          <input type="password" formControlName="passwordRepeat" class="form-control" id="passwordRepeat">
+         
+          <div *ngIf="isSubmitted && f['passwordRepeat']?.errors?.['required']" class="text-danger">
+            Repeat Password is required.
+          </div>
+          <div *ngIf="f['passwordRepeat']?.errors?.['uppercase']" class="text-danger">
+            passwordRepeat must contain at least one capital letter.
+          </div>
+          <div *ngIf="f['passwordRepeat']?.errors?.['digit']" class="text-danger">
+            passwordRepeat must contain at least one digit.
+          </div>
+          <div *ngIf="f['passwordRepeat']?.errors?.['minlength']" class="text-danger">
+            passwordRepeat must have a minimum length of 5 characters.
+          </div>
+        </div>
+          </div>
+    
+     
+     </div>
+    <div  *ngIf="wait_otpmatchstarted" class="row">
+     <div class="col-6">
+   <div class="form-group">
+     <label for="password">otp</label>
+     <input type="text" formControlName="otp" class="form-control" id="otp">
+     <span class="error" *ngIf="isSubmitted && errorControl['otp'].errors?.['required']">
+       otp not provided.
+     </span> 
+   </div>
+     </div>
+  
+   
+    
+    </div>
+  
+
+    
+  
+  <div *ngIf="wait_otpmatchstarted==true">Enter otp which we sent on your mobile number {{mobileNumber}}, you have half minute</div>
+  <div *ngIf="alExists">This number already registered</div>
+  <button  type="submit" class="btn btn-primary" *ngIf="!wait_otpmatchstarted && !alExists" (click)="onRegistrationRequest()">Request</button>
+    <button type="submit" class="btn btn-primary" *ngIf="wait_otpmatchstarted" (click)="onSubmitClick()">Submit</button>
+    
+  </form>

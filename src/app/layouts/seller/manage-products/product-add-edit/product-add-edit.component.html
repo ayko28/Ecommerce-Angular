@@ -1,0 +1,191 @@
+<!-- <div *ngIf='categoryList'>categoryList count:{{categoryList.length}}</div> -->
+<!--search while adding to avoid similar products added-->   
+<!-- shop_type_OfThis_seller:{{shop_type_OfThis_seller}} -->
+<div class="card" *ngIf="addedit_OPmode=='Add'">
+  <div class="card-body">
+    <div>Before adding new product just check if it is already existing by searching here...</div>
+    <input type="text" [(ngModel)]="searchNM" (keyup)="searchByName()">
+    <!-- <div *ngFor="let aMatch of products_matching">
+     <div style="width:270px;float:left"> <div style="width:70px">{{aMatch.product_name}}</div></div>-Rs.{{aMatch.price}}/{{servCommon.GetDisplayNameByKey(unit_master,'id',aMatch.unit_id,'unit_name')}}
+     </div> -->
+     <table class="table" *ngIf="products_matching.length"> 
+      <thead class="text-primary">
+       <th style="width:30%">Product</th>
+       <th>Price</th>
+      </thead>
+     <tbody>
+       <tr *ngFor="let aMatch of products_matching">
+         <td>{{ aMatch.product_name }}</td>
+         <td>{{ aMatch.price }}/{{servCommon.GetDisplayNameByKey(unit_master,'id',aMatch.unit_id,'unit_name')}}</td>
+      </tr>
+       
+     </tbody>
+   </table>
+  </div>
+</div>
+<div class="card">
+  <div class="card-body">
+        
+    <img *ngIf="isLoading" style="height:300px;width:400px" src="../../../../../assets/icon/loading.gif">
+    <form   [formGroup]="myForm" (ngSubmit)="onSubmit()" autocomplete="off">
+  <!--*ngIf="isLoading==false"-->
+   <!-- <div class="form-group">
+     <label for="seller_id">seller_id</label>
+     <input type="text" formControlName="seller_id" class="form-control" id="seller_id">
+   </div> -->
+
+   <div class="row">
+    <div class="col-lg-3 col-md-4 col-6">
+   <div class="form-group">
+     <label for="product_name">Product</label>
+     <input type="text" maxlength="50" formControlName="product_name" class="form-control" id="product_name">
+      
+     <span class="error" *ngIf="isSubmitted && errorControl['product_name'].errors?.['required']">
+      product_name not provided.
+     </span> 
+   </div>
+</div>
+<div class="col-lg-3 col-md-4 col-6">
+   <div class="form-group">
+    <label for="category">Category</label>
+    <select class="form-control" formControlName="category" required>
+      <option *ngFor="let aCategory of categoryList" [value]="aCategory.id">{{aCategory.Category}}</option>
+    </select>
+    <span class="error" *ngIf="isSubmitted && errorControl['category'].errors?.['required']">
+      Category not provided.
+    </span> 
+  </div>
+</div>
+   </div>
+   <div class="row">
+    <div class="col-lg-3 col-md-4 col-3">  <div class="form-group">
+      <label for="unit_id">Unit</label>
+      <select class="form-control" formControlName="unit_id" required>
+        <option *ngFor="let aUnit of unit_master" [value]="aUnit.id">{{aUnit.unit_name}}</option>
+      </select>
+      <span class="error" *ngIf="isSubmitted && errorControl['unit_id'].errors?.['required']">
+        unit_id not provided.
+      </span> 
+    </div>
+   </div>
+   <div class="col-lg-3 col-md-4 col-3">   
+    <div class="form-group">
+    <label for="Price">Price</label>
+    <input type="number"  formControlName="price" class="form-control" id="price">
+      
+    <span class="error" *ngIf="isSubmitted && errorControl['price'].errors?.['required']">
+      price not provided.
+    </span> 
+  </div> 
+</div>
+
+<div class="col-lg-3 col-md-4 col-3">   
+  <div class="form-group">
+    <label for="category">CustomQuantity</label>
+    <select class="form-control" formControlName="Allowed_customQuantity" required >
+      <option value=true>True</option>
+      <option value=false>False</option>
+    </select>
+    <span class="error" *ngIf="isSubmitted && errorControl['Allowed_customQuantity'].errors?.['required']">
+      Allowed_customQuantity not provided.
+    </span> 
+  </div>
+  
+  <div *ngIf="errorControl['Allowed_customQuantity'].value==true">
+  <input type="checkbox" [checked]="show_customQuantity_Details" (change)="show_customQuantity_Details=!show_customQuantity_Details">Show Details:{{show_customQuantity_Details}}
+</div>
+
+</div>
+
+<div class="col-lg-3 col-md-4 col-3">   
+  <!-- <div class="form-group">
+    <label for="category">CustomPrice</label>
+    <select class="form-control" formControlName="Allowed_customPrice" required >
+      <option value=true>True</option>
+      <option value=false>False</option>
+    </select>
+    <span class="error" *ngIf="isSubmitted && errorControl['Allowed_customPrice'].errors?.['required']">
+      Allowed_customPrice not provided.
+    </span> 
+  </div> -->
+</div>
+
+  </div><!--unit n price in one row-->
+
+  <!--show_customQuantity_Details-->
+  <div class="row" *ngIf="show_customQuantity_Details" style="align-self: center;">
+    <div class="col-lg-3 col-md-3 col-3"></div>  <div class="col-lg-7 col-md-8 col-10">
+        <product-quantity [ProductId]="param_Product_id"></product-quantity>
+    </div>
+  </div><!--show_customQuantity_Detals-->
+
+
+  <!-- <div class="row">
+    <div class="col-lg-4 col-md-4 col-6">
+    <div class="form-group">
+    <label for="description">Description</label>
+    <input type="text" maxlength="50" formControlName="description" class="form-control" id="description">
+      
+    <span class="error" *ngIf="isSubmitted && errorControl['description'].errors?.['required']">
+      description not provided.
+    </span> 
+    </div>
+    </div>
+    <div class="col-lg-4 col-md-4 col-6">
+    <div class="form-group">
+      <label for="discount_text">Discount_Text</label>
+      <input type="text" maxlength="50" formControlName="discount_text" class="form-control" id="discount_text">
+    </div>
+  </div>
+  </div> -->
+
+  <div class="row">
+    
+ <div class="col-lg-4 col-md-4 col-6">
+ <!--for outofstock-->
+ <div class="form-group">
+  <label for="OutOfStock">Out Of Stock : </label>
+  <input type="checkbox" [formControlName]="'OutOfStock'" id="OutOfStock">
+  Yes/No
+  <span class="error" *ngIf="isSubmitted && errorControl['OutOfStock'].errors?.['required']">
+    Out of stock not provided.
+  </span> 
+</div><!---->
+</div>
+
+ <!--end for outofstock-->
+ <div class="col-lg-4 col-md-4 col-6">
+  <div class="form-group">
+    <label for="IsOnlyForAdvertise">Only For Advertise : </label>
+    <input type="checkbox" [formControlName]="'IsOnlyForAdvertise'" id="IsOnlyForAdvertise">
+    Yes/No
+    <span class="error" *ngIf="isSubmitted && errorControl['IsOnlyForAdvertise'].errors?.['required']">
+      IsOnlyForAdvertise not provided.
+    </span> 
+  </div>
+  </div>
+  </div>
+  <div class="row">
+
+  <div class="col-lg-4 col-md-4 col-6">
+   <div class="form-group">
+    <label for="image">Product Image</label>
+    <input type="file" (change)="onImageSelected($event)" class="form-control-file" id="image">
+  </div>
+</div>
+</div>
+
+  <div class="form-group">
+                                                                          <!--{{errorControl["imageUrl"].value}}-->
+    <img formControlName="imageUrl" style='height:250px;width:auto; object-fit: contain'  src='../../../../../assets/product_images/{{errorControl["imageUrl"].value}}' class="card-img-top" alt="Product image">
+    <span class="error" *ngIf="isSubmitted && errorControl['imageUrl'].errors?.['required']">
+      imageUrl not provided.
+    </span> 
+  </div>
+  
+   <button  (click)="onSubmitClick()" [disabled]="myForm.valid==false"  *ngIf="addedit_OPmode!=''" type="submit" class="btn btn-primary">Submit</button>
+   <button type="submit" class="btn btn-primary" (click)="onCancelClick()">Cancel</button>
+    </form>
+
+  </div>
+</div>

@@ -1,0 +1,49 @@
+
+
+  <div class='row'>
+    <div class="col-12">
+   <div class="card" *ngFor="let order of Paid_Orders_Of_Sellers | groupBy: 'orderId'"> 
+    <div class="card-header">
+      
+<div>
+  <button class='btn btn-sm btn-danger' (click)="setOrderStatusToShipping(order.key)">Shipping</button>
+  <button class='btn btn-sm btn-danger' (click)="setOrderStatusToComplete(order.key)">Complete</button>
+</div>
+    <h6  class="card-title">{{ getOrderStatus(order.key) }} Order ID: {{ order.key }} 
+        Order Date: {{ getOrderDate(order.key) }}    
+  </h6>
+  <h6  class="card-title">
+    Customer : {{ getCustomerName(order.key) }} 
+   
+</h6> 
+
+</div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-striped">
+      <thead class="text-primary">
+      
+          <th>Product</th>
+           <th>Price</th>  
+         <th>Quantity</th>
+        
+     
+      </thead>
+      <tbody>
+        <tr  *ngFor="let orderItem of order.items" style="height: 5px;"
+      
+        >
+         <td>{{ getProductName(orderItem.productId)}}</td>
+         <td>{{ orderItem.price }}</td>
+         <td>{{ orderItem.quantity }}</td>
+          
+      
+        </tr>
+      </tbody>
+      </table>
+    </div>
+  </div>
+  </div><!-- iterate order -->
+      </div>
+      
+    </div>

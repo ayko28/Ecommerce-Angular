@@ -1,0 +1,20 @@
+
+<div class="row">
+
+   <div class="col-12">
+      <app-display-sellers *ngIf="curr_Seller_id_for_Addedit==null"
+      [events]="eventsSubject.asObservable()"
+      (seller_id_for_Addedit)=seller_Select_Changed_for_Addedit($event)
+      (seller_id_for_Detail)=seller_Select_Changed_for_Detail($event)>
+      </app-display-sellers>
+   </div>
+ 
+   <div class="col-12">
+      <app-sellers-add-edit *ngIf="curr_Seller_id_for_Addedit!=null"
+      [param_Seller_id]=curr_Seller_id_for_Addedit 
+      (formSaved)=sellerformSave_Detected($event)>         
+      </app-sellers-add-edit>
+   </div>
+
+
+</div>   

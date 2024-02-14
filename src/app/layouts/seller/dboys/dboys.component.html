@@ -1,0 +1,36 @@
+<div *ngIf="authServ.currentUserValue!.userrole=='Admin'">
+   ( Behalf )Select Seller
+   <select
+   class="form-control"
+   id="pCategory"
+   name="pCategory"
+   [(ngModel)]="currUser"
+ >
+   <option value="" disabled>Choose a seller</option>
+   <option *ngFor="let c of sellers" [ngValue]="c">{{ c.display_name }}</option>
+ </select>
+ </div>
+ 
+<div class="row">
+
+   <div class="col-12">
+<app-display-dboys *ngIf="curr_Seller_id_for_Addedit==null && (currUser && currUser.id!==undefined)"
+[events]="eventsSubject.asObservable()"
+[param_currUserId]=currUser
+(seller_id_for_Addedit)=seller_Select_Changed_for_Addedit($event)
+(seller_id_for_Detail)=seller_Select_Changed_for_Detail($event)></app-display-dboys>
+
+
+
+</div>
+ 
+<div class="col-12">
+   <app-dboy-add-edit *ngIf="curr_Seller_id_for_Addedit!=null"
+   [param_currUserId]=currUser
+   [param_Seller_id]=curr_Seller_id_for_Addedit 
+   (formSaved)=sellerformSave_Detected($event)>         
+   </app-dboy-add-edit>
+</div>
+
+
+</div>   

@@ -1,0 +1,30 @@
+
+
+
+<div style="padding:0" >
+    
+   <div style="padding:0" (mouseleave)="showDropDown = false"><img style="height:20px;width:auto" src='../../../../assets/icon/search.jpg'>By Category
+       <button class="drop-toggle btn flat" (click)="showDropDown=!showDropDown">
+           <span *ngIf="checkedList.length<=0">Select</span>
+<!--            <span *ngIf="checkedList.length>0">{{checkedList.join(', ')}}</span> -->
+          <!--  <span *ngIf="checkedList.length > 0">{{checkedList.map(item => item.display_name).join(', ')}}</span> -->
+           <span style="padding:0" *ngIf="checkedList.length > 0">{{getCheckedListNames()}}</span>
+
+           <i class="fa fa-angle-down"></i>
+       </button>
+
+       <!--  [disabled]="checkedCount >= 3 && !a.checked"-->
+       <div class="drop-show" *ngIf="showDropDown" >
+           <label *ngFor="let a of list">
+               <input type="checkbox" [(ngModel)]="a.checked" 
+                   (change)="getSelectedValue(a.checked,a.id,a.category);"
+                 
+                    />
+               <span >{{a[fieldtodisplay]}}</span>
+           </label>
+       </div>
+   </div>
+</div>
+
+<!--
+-->

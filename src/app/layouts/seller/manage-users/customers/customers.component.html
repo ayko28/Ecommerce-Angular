@@ -1,0 +1,20 @@
+
+<div class="row">
+
+   <div class="col-12">
+      <app-display-customers-paging  *ngIf="curr_Customer_id_for_Addedit==null"
+      [events]="eventsSubject.asObservable()"
+      (customer_id_for_Addedit)=Customer_Select_Changed_for_Addedit($event)
+      (customer_id_for_Detail)=Customer_Select_Changed_for_Detail($event)>
+      </app-display-customers-paging>
+   </div>
+ 
+   <div class="col-12">
+      <app-customers-add-edit *ngIf="curr_Customer_id_for_Addedit"
+      [param_Customer_id]=curr_Customer_id_for_Addedit 
+      (formSaved)=customerformSave_Detected($event)>         
+      </app-customers-add-edit>
+   </div>
+
+
+</div>   

@@ -1,0 +1,39 @@
+
+.card-products_CL{
+   .card-body{
+     //  padding: 15px 15px 0px;
+     padding: 11px 15px 5px;
+       min-height: 150px;
+       .card-title{color:maroon;font-size: 1.1em;}
+       .numbers{
+         text-align: right;
+         font-size: 2em;
+
+           p{
+               margin-bottom: 0;
+           }
+           .card-description, .card-price, .card-discounttext{
+             color: $dark-gray;
+             font-size: 11px;
+             line-height: 1.4em;
+             text-align: left;
+           }
+       }
+   }
+   .card-footer{
+      // padding: 0px 15px 15px;
+      padding: 0px 10px 5px;
+
+       .stats{
+         color: $dark-gray;
+       }
+
+       hr{
+         margin-top: 10px;
+         margin-bottom: 15px;
+       }
+   }
+   
+
+
+}

@@ -1,0 +1,157 @@
+
+<div class="card">
+   <div class="card-body">
+     
+ <form [formGroup]="myForm" (ngSubmit)="onSubmit()" autocomplete="off">
+   <div class="row">
+     
+ <div class="col-12">
+   <!-- <div class="form-group">
+     <label for="promoType">Promotion Type</label>
+     <select class="form-control" formControlName="promoType" value="apromo.promotionType" required>
+  
+   <option *ngFor="let apromo of PromotionTypeList" [value]="apromo.promotionType">{{apromo.promotionType}}</option>
+ 
+     </select>
+     <span class="error" *ngIf="isSubmitted && errorControl['promoType'].errors?.['required']">
+       promoType not provided.
+     </span> 
+   </div> -->
+      </div>
+   </div>
+   <div class="row">
+   <div class="col-6">
+     <div class="form-group">
+       <label for="product">Product</label>
+       <select class="form-control" formControlName="productId" required><!--promotion_Type-->
+         <option *ngFor="let aProduct of ProductList" [value]="aProduct.id">{{aProduct.product_name}}</option>
+       </select>
+       <span class="error" *ngIf="isSubmitted && errorControl['productId'].errors?.['required']">
+         Product not provided.
+       </span> 
+     </div>
+   </div> 
+   <div class="col-6">
+     <div class="form-group">
+       <label for="promotionName">promotionName</label>
+       <input type="text" maxlength="50" formControlName="promotionName" class="form-control" id="promotionName">
+     </div>
+ </div>
+   </div>
+ 
+   <div class="row">
+    <div class="col-6">
+      <div class="form-group">
+        <label for="startDate">Start Date:</label>
+        <input class="form-control"
+               id="startDate"
+               placeholder="Enter Start Date"
+               bsDatepicker
+               [bsConfig]="bsConfig"
+               formControlName="startDate">
+      </div></div>
+    <div class="col-6">
+  
+      <div class="form-group">
+        <label for="endDate">End Date:</label>
+        <input class="form-control"
+               id="startDate"
+               placeholder="Enter End Date"
+               bsDatepicker
+               [bsConfig]="bsConfig"
+               formControlName="endDate">
+      </div>
+</div>
+</div>
+   
+      
+ 
+     <!-- <div class="row" *ngIf="errorControl['promoType'].value.indexOf('Buy')==-1">
+     <div class="col-6">
+       <div class="form-group">
+         <label for="discountPercentage">discountPercentage</label>
+         <input type="number" formControlName="discountPercentage" class="form-control" id="discountPercentage">
+       </div>
+     
+   </div>
+   <div class="col-6">
+     <div class="form-group">
+       <label for="discountAmount">discountAmount</label>
+       <input type="number" formControlName="discountAmount" class="form-control" id="discountAmount">
+     </div>
+          </div>
+     </div> -->
+ 
+     <div> <!-- start Stages of this Quantity-Promotion   ----------------->
+     
+       
+        <!-- <div formArrayName="quantityStagesFormArray">
+          <div *ngFor="let stage of quantityStagesFormArray.controls; let i = index">
+            <div [formGroupName]="i">
+              <div>
+                <label>Quantity Range:</label>
+                <input type="number" style="width:50px" formControlName="quantityRangeStart">
+                <span>to</span>
+                <input type="number" style="width:50px" formControlName="quantityRangeEnd">
+                <label>Discount Percentage:</label>
+                <input type="number" style="width:50px" formControlName="discountPercentage">
+                <button (click)="removeStage(i)">Remove</button>
+              </div>
+            </div>
+          </div>
+        </div> -->
+       <!--  <div formArrayName="quantityStagesFormArray">
+          <div style="width:70px">Start</div> <div style="width:70px">End</div> <div style="width:70px">Discount Rs</div> <div style="width:70px">Discount %</div>
+        
+          <div *ngFor="let stage of quantityStagesFormArray.controls; let i = index" [formGroupName]="i">
+          
+            <input type="number" style="width:70px" formControlName="quantityRangeStart">
+            <input type="number"  style="width:70px" formControlName="quantityRangeEnd">
+            <input type="number"  style="width:70px" formControlName="discountAmount">
+            <input type="number"  style="width:70px" formControlName="discountPercentage">
+          </div>
+        </div> -->
+        <button class="btn btn-sm btn-danger" (click)="addStage()">Add Stage</button><br/>
+        <div formArrayName="quantityStagesFormArray">
+          <div  class="banner-container">
+            <div class="banner-label">Range-Start</div>
+            <div class="banner-label">Range-End</div>
+            <div class="banner-label">Discount Rs</div>
+            <div class="banner-label">Discount %</div>
+        </div>
+
+          <!-- Loop over the form array controls -->
+          <div *ngFor="let stage of quantityStagesFormArray.controls; let i = index" [formGroupName]="i" class="banner-inputs">
+            <!-- Display the form controls -->
+            <input type="number" class="banner-inputs"  formControlName="quantityRangeStart">
+            <input type="number"  class="banner-inputs" formControlName="quantityRangeEnd">
+            <input type="number"  class="banner-inputs" formControlName="discountAmount">
+            <input type="number"  class="banner-inputs" formControlName="discountPercentage">
+          </div>
+        </div>
+        <br/>
+      
+          
+      
+      
+    </div> <!--End Of Stages of this Quantity-Promotion ------------------>
+    
+ 
+   
+ <div class="row">
+   <div class="col-4">
+    <button [disabled]="isSubmitted==true" type="submit" class="btn btn-primary" (click)="onSubmitClick()">Submit</button>
+    </div>
+    <div class="col-4">
+     <button type="submit" class="btn btn-primary" (click)="onDeleteClick()">Delete</button>
+   </div>
+    <div class="col-4">
+     <button type="submit" class="btn btn-primary" (click)="onCancelClick()">Cancel</button>
+   </div> 
+   </div>
+   
+    
+  </form>
+  
+   </div>
+ </div>

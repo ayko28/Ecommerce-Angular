@@ -1,0 +1,68 @@
+<!-- 
+<a routerLink="Product-Promotions" type="button" class="btn btn-outline btn-sm">Product-Promotions</a>
+<a routerLink="Order-Promotions" type="button" class="btn btn-outline btn-sm">Order-Promotions</a>
+ -->
+ <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="collapse navbar-collapse" id="navbarNav"> 
+   <div id="navbarNav"> 
+     <ul class="navbar-nav">
+       <li class="nav-item" [ngClass]="{ 'active': selectedOption === 'Product-Promotions' }">
+         <a routerLink="Product-Promotions" class="nav-link" (click)="selectOption('Product-Promotions')"><p class='menuOption'>Ps</p></a>
+       </li>
+       <li class="nav-item" [ngClass]="{ 'active': selectedOption === 'Order-Promotions' }">
+         <a routerLink="Order-Promotions" class="nav-link" (click)="selectOption('Order-Promotions')"><p class='menuOption'>Os</p></a>
+       </li>
+     </ul>
+   </div>
+ </nav> -->
+<!--  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Your Logo</a>
+    <div class="navbar-nav">
+      <a class="nav-link" href="#">Product Promotions</a>
+      <a class="nav-link" href="#">Order Promotions</a>
+    </div>
+  </div>
+</nav> -->
+<!-- 
+<nav class="navbar navbar-light bg-light">
+  <div class="container-fluid" style="width:100%">
+   
+    <ul class="navbar-nav d-inline-flex flex-row" >
+      <li class="nav-item">
+        <a class="nav-link" href="#">Product Promotions</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Order Promotions</a>
+      </li>
+    </ul>
+  </div>
+</nav> -->
+<nav class="navbar navbar-light bg-light">
+  <div class="container-fluid">
+    <ul class="nav d-flex">
+     
+      <li class="nav-item" [ngClass]="{ 'active': selectedOption === 'Product-Promotions' }">
+       
+         <a  routerLink="Product-Promotions" class="nav-link" href="#" (click)="selectOption('Product-Promotions')"> 
+      
+     
+        Product Promotion</a>
+      </li>
+      <!-- <li class="nav-item" [ngClass]="{ 'active': selectedOption === 'Product-Range-Promotions' }">
+       
+        <a  routerLink="Quantity-Promotions" class="nav-link" href="#" (click)="selectOption('Product-Range-Promotions')"> 
+     
+    
+       Quantity </a>
+     </li> -->
+      <li class="nav-item" [ngClass]="{ 'active': selectedOption === 'Order-Promotions' }">
+           <a routerLink="Order-Promotions" class="nav-link" href="#" (click)="selectOption('Order-Promotions')">
+         
+             Order Promotion </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<router-outlet></router-outlet>

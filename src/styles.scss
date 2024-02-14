@@ -1,0 +1,11 @@
+/* You can add global styles to this file, and also import other style files */
+.ng-dropdown-panel {
+   z-index: 9999;
+ }
+
+ /* Add this CSS to your global styles.css or in your component's CSS file */
+.navbar {
+  padding-top: 20px; /* Adjust the padding-top value as needed */
+  padding-bottom: 10px; /* Adjust the padding-bottom value as needed */
+  height:64px;// 62px;
+}
